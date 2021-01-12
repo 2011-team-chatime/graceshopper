@@ -19,3 +19,34 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.book-img {
+  height: 20%;
+  width: 20%;
+}
+
+.productsContainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.productContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 10px;
+  margin: 10px 0;
+  width: 70%;
+  background-color: pink;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 10px;
+  margin: 10px 0;
+  width: 50%;
+  flex-flow: column wrap;
+}

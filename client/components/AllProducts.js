@@ -15,12 +15,14 @@ class AllProducts extends React.Component {
       <div>
         {allProducts.length > 0 ? (
           <div className="productsContainer">
-            {this.props.allProducts.map(product => (
+            {allProducts.map(product => (
               <div key={product.id} className="productContainer">
-                Tile: {product.title}
-                Author: {product.author}
-                Image: {product.imageUrl}
-                Genre: {product.genre}
+                <img className="book-img" src={product.imageUrl} />
+                <div className="details">
+                  Title: {product.title}
+                  Author: {product.author}
+                  Genre: {product.genre}
+                </div>
               </div>
             ))}
           </div>
