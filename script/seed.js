@@ -5,186 +5,190 @@ const {User, Product} = require('../server/db/models')
 
 const products = [
   {
-    title: 'nulla integer pede justo lacinia eget tincidunt eget tempus vel',
-    author: 'Davita Bleasdale',
-    price: 70.83,
-    quantity: 58,
-    genre: 'Other',
-    description:
-      'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.'
-  },
-  {
-    title: 'posuere felis sed lacus morbi sem mauris laoreet',
-    author: 'Sabra Posvner',
-    price: 83.65,
-    quantity: 29,
-    genre: 'Nonfiction',
-    description:
-      'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-  },
-  {
-    title: 'accumsan tellus nisi eu',
-    author: 'Arny Harfleet',
-    price: 32.88,
-    quantity: 90,
-    genre: 'Children',
-    description:
-      'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.'
-  },
-  {
-    title: 'amet consectetuer adipiscing elit',
-    author: 'Jeremias Bolger',
-    price: 41.24,
-    quantity: 78,
+    title: 'erat tortor sollicitudin',
+    author: 'Anastassia Dallaghan',
+    price: 860,
+    quantity: 14,
     genre: 'Sci-fi',
-    description:
-      'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.'
-  },
-  {
-    title: 'donec ut dolor morbi vel lectus in quam',
-    author: 'Laurie Orbine',
-    price: 31.04,
-    quantity: 19,
-    genre: 'Other',
-    description:
-      'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.'
-  },
-  {
-    title: 'massa quis augue',
-    author: 'Tommy Farndale',
-    price: 4.55,
-    quantity: 37,
-    genre: 'Other',
-    description:
-      'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.'
-  },
-  {
-    title: 'leo pellentesque ultrices mattis odio donec vitae',
-    author: 'Skipper Beall',
-    price: 51.41,
-    quantity: 80,
-    genre: 'Romance',
-    description:
-      'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.'
-  },
-  {
-    title: 'id consequat in consequat ut nulla sed accumsan felis ut',
-    author: 'Bess Spearing',
-    price: 81.46,
-    quantity: 21,
-    genre: 'Other',
-    description: 'In congue. Etiam justo. Etiam pretium iaculis justo.'
-  },
-  {
-    title:
-      'consectetuer adipiscing elit proin risus praesent lectus vestibulum quam',
-    author: 'Donnamarie Vallentine',
-    price: 68.49,
-    quantity: 20,
-    genre: 'Sci-fi',
-    description:
-      'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.'
-  },
-  {
-    title: 'eget massa tempor convallis nulla neque libero convallis',
-    author: 'Miltie Gaitung',
-    price: 49.73,
-    quantity: 25,
-    genre: 'Other',
-    description:
-      'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.'
-  },
-  {
-    title: 'nec euismod scelerisque quam turpis adipiscing lorem vitae',
-    author: 'Bradford Wille',
-    price: 70.55,
-    quantity: 59,
-    genre: 'Children',
-    description:
-      'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.'
-  },
-  {
-    title: 'ut dolor morbi vel lectus',
-    author: 'Woodman McSpirron',
-    price: 83.49,
-    quantity: 91,
-    genre: 'Nonfiction',
-    description:
-      'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.'
-  },
-  {
-    title: 'ornare imperdiet sapien',
-    author: 'Othelia Hillam',
-    price: 71.34,
-    quantity: 64,
-    genre: 'Children',
-    description:
-      'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.'
-  },
-  {
-    title: 'ante ipsum primis in',
-    author: 'Sampson Kitcherside',
-    price: 49.02,
-    quantity: 39,
-    genre: 'Young Adult',
     description:
       'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'
   },
   {
-    title: 'at ipsum ac tellus semper interdum mauris',
-    author: 'Maribel Culshew',
-    price: 32.35,
-    quantity: 25,
+    title: 'quis turpis eget elit sodales',
+    author: 'Ricky Derx',
+    price: 2402,
+    quantity: 1,
+    genre: 'Nonfiction',
+    description:
+      'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.'
+  },
+  {
+    title: 'nibh quisque id',
+    author: 'Ermin Thecham',
+    price: 491,
+    quantity: 96,
+    genre: 'Young Adult',
+    description:
+      'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
+  },
+  {
+    title: 'nulla tellus in sagittis dui vel',
+    author: 'Fanya Somerlie',
+    price: 2861,
+    quantity: 13,
+    genre: 'Sci-fi',
+    description:
+      'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
+  },
+  {
+    title: 'odio porttitor id consequat in consequat ut nulla sed accumsan',
+    author: 'Kirsti Gruczka',
+    price: 2238,
+    quantity: 71,
+    genre: 'Sci-fi',
+    description:
+      'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.'
+  },
+  {
+    title:
+      'interdum mauris non ligula pellentesque ultrices phasellus id sapien in',
+    author: 'Moises Silverstone',
+    price: 2594,
+    quantity: 83,
     genre: 'Fiction',
     description:
-      'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.'
+      'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.'
   },
   {
-    title: 'risus praesent lectus vestibulum quam sapien',
-    author: 'Dolly Goatman',
-    price: 43.23,
-    quantity: 26,
-    genre: 'Young Adult',
+    title: 'faucibus cursus urna ut tellus nulla',
+    author: 'Jaimie Pocklington',
+    price: 842,
+    quantity: 37,
+    genre: 'Nonfiction',
     description:
-      'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.'
+      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.'
   },
   {
-    title: 'luctus et ultrices posuere cubilia curae',
-    author: 'Prentiss Edinborough',
-    price: 75.79,
-    quantity: 47,
-    genre: 'Young Adult',
-    description:
-      'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.'
-  },
-  {
-    title: 'vel sem sed',
-    author: 'Clementius Klulisek',
-    price: 31.99,
-    quantity: 86,
+    title: 'duis faucibus accumsan odio curabitur convallis duis consequat dui',
+    author: 'Kathye Peattie',
+    price: 1699,
+    quantity: 77,
     genre: 'Mystery',
     description:
-      'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.'
+      'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.'
   },
   {
-    title: 'in lectus pellentesque at nulla suspendisse potenti',
-    author: 'Thurstan McNeil',
-    price: 33.36,
-    quantity: 31,
-    genre: 'Sci-fi',
+    title: 'ligula nec sem duis aliquam convallis nunc proin at',
+    author: 'Ryan Woollard',
+    price: 1214,
+    quantity: 44,
+    genre: 'Mystery',
     description:
-      'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.'
+      'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.'
   },
   {
-    title: 'et magnis dis parturient montes nascetur ridiculus mus etiam',
-    author: 'Adan Andrichak',
-    price: 82.72,
-    quantity: 53,
-    genre: 'Sci-fi',
+    title: 'at nunc commodo',
+    author: 'Anton Barnish',
+    price: 1132,
+    quantity: 93,
+    genre: 'Fiction',
     description:
-      'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.'
+      'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.'
+  },
+  {
+    title:
+      'ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit',
+    author: 'Tudor Redon',
+    price: 1477,
+    quantity: 3,
+    genre: 'Other',
+    description:
+      'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
+  },
+  {
+    title: 'interdum mauris non ligula pellentesque',
+    author: 'Darius Sturridge',
+    price: 1189,
+    quantity: 82,
+    genre: 'Other',
+    description:
+      'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
+  },
+  {
+    title: 'fusce lacus purus aliquet at feugiat non pretium',
+    author: 'Dulci Batterson',
+    price: 2203,
+    quantity: 4,
+    genre: 'Nonfiction',
+    description:
+      'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.'
+  },
+  {
+    title:
+      'sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at',
+    author: 'Cynthia Broinlich',
+    price: 2821,
+    quantity: 70,
+    genre: 'Other',
+    description:
+      'Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.'
+  },
+  {
+    title: 'consequat lectus in est',
+    author: 'Channa Halpen',
+    price: 1858,
+    quantity: 68,
+    genre: 'Young Adult',
+    description:
+      'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.'
+  },
+  {
+    title: 'suspendisse potenti cras in purus',
+    author: 'Salvador Pirolini',
+    price: 1614,
+    quantity: 14,
+    genre: 'Nonfiction',
+    description:
+      'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.'
+  },
+  {
+    title: 'urna ut tellus nulla',
+    author: 'Georgie Spellecy',
+    price: 233,
+    quantity: 42,
+    genre: 'Fiction',
+    description:
+      'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.'
+  },
+  {
+    title: 'vivamus in felis eu sapien cursus vestibulum',
+    author: 'Brett Osichev',
+    price: 2406,
+    quantity: 45,
+    genre: 'Other',
+    description:
+      'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
+  },
+  {
+    title: 'ipsum praesent blandit',
+    author: 'Maurits English',
+    price: 1095,
+    quantity: 14,
+    genre: 'Young Adult',
+    description:
+      'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
+  },
+  {
+    title: 'platea dictumst aliquam augue quam sollicitudin',
+    author: 'Nicolis Van Arsdalen',
+    price: 960,
+    quantity: 55,
+    genre: 'Nonfiction',
+    description:
+      'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.'
   }
 ]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
