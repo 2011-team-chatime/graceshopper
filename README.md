@@ -188,6 +188,10 @@ above has failed.
 That's it! From now on, whenever `master` is updated on GitHub, Travis
 will automatically push the app to Heroku for you.
 
+### Seed Data to Heroku
+
+In terminal, run `heroku run bash` and `npm run seed` to seed database into Heroku.
+
 ### Cody's own deploy script
 
 Your local copy of the application can be pushed up to Heroku at will,
