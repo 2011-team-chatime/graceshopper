@@ -34,4 +34,28 @@ describe('Product routes', () => {
       expect(res.body[0].price).to.be.equal(70)
     })
   })
+
+  describe('/api/products/:productId', () => {
+    beforeEach(() => {
+      return Product.create({
+        title:
+          'nulla integer pede justo lacinia eget tincidunt eget tempus vel',
+        author: 'Davita Bleasdale',
+        price: 70,
+        quantity: 58,
+        genre: 'Other',
+        description:
+          'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.'
+      })
+    })
+
+    it('GET /api/products/:productId', async () => {
+      const res = await request(app)
+        .get('/api/products/1')
+        .expect(200)
+
+      expect(res.body).to.be.an('object')
+      expect(res.body.price).to.be.equal(70)
+    })
+  })
 })
