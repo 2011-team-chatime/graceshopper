@@ -10,3 +10,17 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:productId', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId)
+    const respond = {product}
+    if (!respond) {
+      res.status(404).send('Book not found')
+    } else {
+      res.send(respond)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
