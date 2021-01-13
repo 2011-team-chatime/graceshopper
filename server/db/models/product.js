@@ -17,10 +17,11 @@ const Product = db.define('product', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
+      min: 0
     }
   },
   quantity: {
@@ -45,13 +46,13 @@ const Product = db.define('product', {
       'Children',
       'Young Adult',
       'Other'
-    ),
-    description: {
-      type: Sequelize.TEXT,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
+    )
+  },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true
     }
   }
 })
