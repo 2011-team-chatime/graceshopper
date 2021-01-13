@@ -4,11 +4,28 @@ import {fetchSingleProduct} from '../store/singleProduct'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
+    console.log(this.props.match.params.productId)
     this.props.loadSingleProduct(this.props.match.params.productId)
   }
 
   render() {
-    return <div>Hello Single Product</div>
+    const product = this.props.product || {}
+
+    return (
+      <div>
+        {product.title ? (
+          <div>{product.title}</div>
+        ) : (
+          <span>Book not found</span>
+        )}
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    product: state.product.product
   }
 }
 
@@ -18,4 +35,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SingleProduct)
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
