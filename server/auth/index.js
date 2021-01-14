@@ -53,7 +53,7 @@ const isAdmin = (req, res, next) => {
   next()
 }
 
-router.get('/me', isAdmin, (req, res) => {
+router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
