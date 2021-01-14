@@ -3,6 +3,169 @@
 const db = require('../server/db')
 const {User, Product} = require('../server/db/models')
 
+const users = [
+  {
+    name: 'Alasdair',
+    isAdmin: true,
+    address: '4012 Lillian Crossing',
+    paymentinfo: '5602234373317821',
+    email: 'Alasdair@163.com',
+    password: '12345*'
+  },
+  {
+    name: 'Valerie',
+    isAdmin: true,
+    address: '93072 Rutledge Plaza',
+    paymentinfo: '3586511504697618',
+    email: 'Valerie@163.com',
+    password: '12345*'
+  },
+  {
+    name: 'Madelle',
+    isAdmin: false,
+    address: '044 Pankratz Lane',
+    paymentinfo: '5018362002671975',
+    email: 'msmalridge2@webmd.com',
+    password: 'SF7SCrg'
+  },
+  {
+    name: 'Elga',
+    isAdmin: false,
+    address: '27402 Kings Circle',
+    paymentinfo: '30067489591878',
+    email: 'epagen3@yahoo.co.jp',
+    password: 'CbUK79N'
+  },
+  {
+    name: 'Abbie',
+    isAdmin: false,
+    address: '64182 Dunning Terrace',
+    paymentinfo: '490303719463391393',
+    email: 'aostridge4@indiatimes.com',
+    password: 'VzcweD9ekf'
+  },
+  {
+    name: 'Lian',
+    isAdmin: false,
+    address: '084 Prairie Rose Terrace',
+    paymentinfo: '5641824930213021601',
+    email: 'lgarstang5@google.co.jp',
+    password: '342kdf3v44I'
+  },
+  {
+    name: 'Sophia',
+    isAdmin: false,
+    address: '0 Washington Center',
+    paymentinfo: '337941782593445',
+    email: 'sskones6@wix.com',
+    password: 'Vt8mGE'
+  },
+  {
+    name: 'Brannon',
+    isAdmin: false,
+    address: '31583 Dorton Junction',
+    paymentinfo: '201629618494606',
+    email: 'bpenticost7@woothemes.com',
+    password: 'QdatAlhvFLE'
+  },
+  {
+    name: 'Wadsworth',
+    isAdmin: false,
+    address: '0 Mayer Street',
+    paymentinfo: '3532824150232092',
+    email: 'walywin8@auda.org.au',
+    password: 'p8b4l9a9'
+  },
+  {
+    name: 'Daryn',
+    isAdmin: false,
+    address: '1371 Center Trail',
+    paymentinfo: '560222818743423576',
+    email: 'dtooze9@latimes.com',
+    password: 'y06sfM'
+  },
+  {
+    name: 'Wilden',
+    isAdmin: false,
+    address: '09 Grim Terrace',
+    paymentinfo: '201833552477888',
+    email: 'walsobrooka@wikipedia.org',
+    password: '9JFESno'
+  },
+  {
+    name: 'Bertie',
+    isAdmin: false,
+    address: '059 Starling Court',
+    paymentinfo: '6763980783515512129',
+    email: 'bmangonb@photobucket.com',
+    password: 'zFXKzyi'
+  },
+  {
+    name: 'Rolf',
+    isAdmin: false,
+    address: '0 Atwood Hill',
+    paymentinfo: '6761225333652914',
+    email: 'rdudnyc@barnesandnoble.com',
+    password: 'CtJQLD'
+  },
+  {
+    name: 'Waly',
+    isAdmin: false,
+    address: '930 Oneill Lane',
+    paymentinfo: '3529254881270150',
+    email: 'wwallbuttond@yandex.ru',
+    password: 'foMIG5gLc5'
+  },
+  {
+    name: 'Katy',
+    isAdmin: false,
+    address: '73 Truax Parkway',
+    paymentinfo: '3556412360966906',
+    email: 'kaitkine@archive.org',
+    password: 'LZUHabwYYsdU'
+  },
+  {
+    name: 'Emmalynn',
+    isAdmin: false,
+    address: '4 Scofield Plaza',
+    paymentinfo: '3554233973391866',
+    email: 'esprittf@facebook.com',
+    password: 'G2s67ng'
+  },
+  {
+    name: 'Brandy',
+    isAdmin: false,
+    address: '260 Monica Junction',
+    paymentinfo: '5048375147725799',
+    email: 'bpetticrowg@kickstarter.com',
+    password: 'TBcUfGTa'
+  },
+  {
+    name: 'Timothee',
+    isAdmin: false,
+    address: '58 Village Green Crossing',
+    paymentinfo: '503898765858114321',
+    email: 'ttyeh@guardian.co.uk',
+    password: 'mBf3zSJ6v'
+  },
+  {
+    name: 'Hercules',
+    isAdmin: false,
+    address: '305 Northland Hill',
+    paymentinfo: '3554035745855809',
+    email: 'halbasinii@squarespace.com',
+    password: 'HDye3tD'
+  },
+  {
+    name: 'Vikki',
+    isAdmin: false,
+    address: '2 Arizona Crossing',
+    paymentinfo: '3536775468232040',
+    email: 'vfenichj@sina.com.cn',
+    password: 'lpSdWhc'
+  }
+]
+
 const products = [
   {
     title: 'erat tortor sollicitudin',
@@ -198,6 +361,11 @@ async function seed() {
     //   User.create({email: 'cody@email.com', password: '123'}),
     //   User.create({email: 'murphy@email.com', password: '123'}),
     // ])
+    await Promise.all(
+      users.map(user => {
+        return User.create(user)
+      })
+    )
 
     await Promise.all(
       products.map(product => {
@@ -206,6 +374,7 @@ async function seed() {
     )
 
     console.log(`seeded ${products.length} products`)
+    console.log(`seeded ${users.length} users`)
     console.log(`seeded successfully`)
   } catch (error) {
     console.log('There was a problem seeding db: ', error.message)
