@@ -38,7 +38,22 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
+const isAdmin = (req, res, next) => {
+  if (req.user) {
+    if (!req.user.isAdmin) {
+      const err = new Error('Not Allowed')
+      err.status = 401
+      return next(err)
+    }
+  } else {
+    const err = new Error('Not Allowed')
+    err.status = 401
+    return next(err)
+  }
+  next()
+}
+
+router.get('/me', isAdmin, (req, res) => {
   res.json(req.user)
 })
 
