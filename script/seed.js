@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product} = require('../server/db/models')
+const {User, Product, Order} = require('../server/db/models')
 
 const users = [
   {
@@ -352,6 +352,54 @@ const products = [
   }
 ]
 
+const orders = [
+  {
+    status: 'inCart',
+    userId: 1
+  },
+  {
+    status: 'inCart',
+    userId: 2
+  },
+  {
+    status: 'inCart',
+    userId: 3
+  },
+  {
+    status: 'inCart',
+    userId: 4
+  },
+  {
+    status: 'inCart',
+    userId: 5
+  },
+  {
+    status: 'inCart',
+    userId: 6
+  },
+  {
+    status: 'inCart',
+    userId: 7
+  },
+  {
+    status: 'inCart',
+    userId: 8
+  },
+  {
+    status: 'inCart',
+    userId: 9
+  },
+  {
+    status: 'inCart',
+    userId: 10
+  },
+  {
+    status: 'ordered',
+    userId: 11,
+    total: 3753
+  }
+]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -361,17 +409,62 @@ async function seed() {
     //   User.create({email: 'cody@email.com', password: '123'}),
     //   User.create({email: 'murphy@email.com', password: '123'}),
     // ])
-    await Promise.all(
+    const allUsers = await Promise.all(
       users.map(user => {
         return User.create(user)
       })
     )
 
-    await Promise.all(
+    const allProducts = await Promise.all(
       products.map(product => {
         return Product.create(product)
       })
     )
+
+    const allOrders = await Promise.all(
+      orders.map(order => {
+        return Order.create(order)
+      })
+    )
+
+    const [
+      product1,
+      product2,
+      product3,
+      product4,
+      product5,
+      product6,
+      product7,
+      product8,
+      product9,
+      product10,
+      product11,
+      product12,
+      product13,
+      product14,
+      product15,
+      product16,
+      product17,
+      product18,
+      product19,
+      product20
+    ] = allProducts
+
+    const [
+      order1,
+      order2,
+      order3,
+      order4,
+      order5,
+      order6,
+      order7,
+      order8,
+      order9,
+      order10,
+      order11
+    ] = allOrders
+
+    await order11.setProducts([product1, product2, product3])
 
     console.log(`seeded ${products.length} products`)
     console.log(`seeded ${users.length} users`)
