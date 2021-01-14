@@ -6,7 +6,7 @@ const db = require('../db')
 const app = require('../index')
 const User = db.model('user')
 
-describe('User routes', () => {
+describe('All User route (only works for admins) ', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -26,10 +26,7 @@ describe('User routes', () => {
     it('GET /api/users', async () => {
       const res = await request(app)
         .get('/api/users')
-        .expect(200)
-
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal('dmcgroarty0@jiathis.com')
+        .expect(401)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
