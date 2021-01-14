@@ -12,7 +12,7 @@ class SingleProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -38,9 +38,9 @@ class SingleProduct extends React.Component {
               <div>Price: ${product.price / 100}</div>
             </div>
 
-            <label htmlFor="Quantity">Quantity</label>
+            <label htmlFor="quantity">Quantity</label>
             <select
-              name="Quantity"
+              name="quantity"
               value={this.state.quantity}
               onChange={this.handleChange}
             >
