@@ -10,6 +10,11 @@ class SingleProduct extends React.Component {
       quantity: 1
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.props.addProduct(this.props.product.id)
   }
 
   handleChange(event) {
@@ -55,6 +60,7 @@ class SingleProduct extends React.Component {
               size="small"
               type="button"
               color="primary"
+              onClick={this.handleClick}
             >
               Add to cart
             </Button>
