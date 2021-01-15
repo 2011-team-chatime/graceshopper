@@ -89,8 +89,8 @@ const users = [
     isAdmin: false,
     address: '09 Grim Terrace',
     paymentinfo: '201833552477888',
-    email: 'walsobrooka@wikipedia.org',
-    password: '9JFESno'
+    email: 'walbrook@wiki.org',
+    password: '123pass'
   },
   {
     name: 'Bertie',
@@ -394,7 +394,7 @@ const orders = [
     userId: 10
   },
   {
-    status: 'ordered',
+    status: 'inCart',
     userId: 11,
     total: 3753
   }

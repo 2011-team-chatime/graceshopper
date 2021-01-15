@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
-import {createCart, checkCart} from '../store/cart'
+import {fetchCart} from '../store/cart'
 
 class Cart extends React.Component {
   constructor() {
@@ -13,9 +13,7 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) {
-      let cart = this.props.checkCart(this.props.user)
-    }
+    this.props.fetchCart()
   }
 
   handleChange(event) {
@@ -24,50 +22,53 @@ class Cart extends React.Component {
     })
   }
   render() {
+    const userCart = this.props.cart || {}
+    const products = this.props.cart.products || []
     return (
       <div className="cart-container">
         <h1>Your Shopping Cart</h1>
+        {!products.length ? (
+          <h3>Your Cart is Empty</h3>
+        ) : (
+          products.map(product => (
+            <div key={product.id} className="cartItemContainer">
+              <div>
+                <img src={product.imageUrl} className="book-img" />
 
-        <div className="cartItemContainer">
-          <div>
-            <img
-              src="https://media1.thehungryjpeg.com/thumbs2/ori_3483795_dfe015d7ef50179be53dc30114c6bf7ddd4c57c3_white-blank-book-cover-vector-template.jpg"
-              className="book-img"
-            />
+                <p>Price: ${product.price / 100}</p>
+                <p>Item Subtotal - Add Actual Amount Here</p>
+              </div>
 
-            <p>Price: </p>
-            <p>Item Subtotal - Add Actual Amount Here</p>
-          </div>
-          <div>
-            <h3>
-              Book Title and Author - Add Actual Title and author Here Instead
-            </h3>
-            <p>Add description here</p>
-          </div>
-          <div>
-            <label htmlFor="quantity">Quantity</label>
-            <select
-              name="quantity"
-              value={this.state.quantity}
-              onChange={this.handleChange}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <Button
-              type="button"
-              variant="contained"
-              size="small"
-              color="primary"
-              className="button"
-            >
-              Delete Item
-            </Button>
-          </div>
-        </div>
+              <p>
+                {product.title} | {product.author}
+              </p>
+
+              <div>
+                <label htmlFor="quantity">Quantity</label>
+                <select
+                  name="quantity"
+                  value={this.state.quantity}
+                  onChange={this.handleChange}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <Button
+                  type="button"
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  className="button"
+                >
+                  Delete Item
+                </Button>
+              </div>
+            </div>
+          ))
+        )}
 
         <Button
           type="button"
@@ -85,16 +86,13 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart,
-    isLoggedIn: !!state.user.id,
-    user: state.user
+    cart: state.cart
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    createCart: () => dispatch(createCart()),
-    checkCart: user => dispatch(checkCart(user))
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 

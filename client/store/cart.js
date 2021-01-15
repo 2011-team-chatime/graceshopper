@@ -1,34 +1,33 @@
 import axios from 'axios'
 
-const CREATE_CART = 'CREATE_CART'
-const CHECK_CART = 'CHECK_CART'
+const SET_CART = 'SET_CART'
 
-export const createCart = cart => ({
-  type: CREATE_CART,
+export const setCart = cart => ({
+  type: SET_CART,
   cart
 })
 
-export const checkCart = cart => ({
-  type: CHECK_CART,
-  cart
-})
+// if (window.localStorage.getItem('guestCart'))
+//   res.json(JSON.parse(window.localStorage.getItem('guestCart')))
+// else window.localStorage.setItem('guestCart', JSON.stringify({}))
 
-export function newCart() {
+export function fetchCart() {
   return async dispatch => {
     try {
-      const res = await axios.post('/api/orders')
-      dispatch(createCart(res.data))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+      let {data} = await axios.get('/api/orders')
 
-export function fetchCart(user) {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get('/api/orders', user)
-      dispatch(checkCart(data))
+      if (!data.id) {
+        if (window.localStorage.getItem('guestCart')) {
+          data = JSON.parse(window.localStorage.getItem('guestCart'))
+        } else {
+          window.localStorage.setItem(
+            'guestCart',
+            JSON.stringify({total: 0, products: ['test']})
+          )
+          data = JSON.parse(window.localStorage.getItem('guestCart'))
+        }
+      }
+      dispatch(setCart(data))
     } catch (error) {
       console.log(error)
     }
@@ -37,9 +36,7 @@ export function fetchCart(user) {
 
 export default function cartReducer(state = {}, action) {
   switch (action.type) {
-    case CREATE_CART:
-      return action.cart
-    case CHECK_CART:
+    case SET_CART:
       return action.cart
     default:
       return state
