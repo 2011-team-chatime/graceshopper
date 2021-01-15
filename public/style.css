@@ -62,3 +62,8 @@ form div {
   width: 70%;
   background-color: pink;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
