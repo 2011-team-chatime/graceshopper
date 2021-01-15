@@ -28,5 +28,5 @@ describe('All User route (only works for admins) ', () => {
         .get('/api/users')
         .expect(401)
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  })
+})
