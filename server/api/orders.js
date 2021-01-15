@@ -5,15 +5,11 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const [order, created] = await Order.findOrCreate({
+      const order = await Order.findOne({
         include: {model: Product},
         where: {userId: req.user.id, status: 'inCart'}
       })
 
-      // const items = await Item.findAll({
-      //   where: {orderId: order.id},
-      //   // include: {model: Product},
-      // })
       res.json(order)
       //issue:
     } else {
@@ -29,10 +25,8 @@ router.get('/', async (req, res, next) => {
 
 router.post('/:orderId/add/:productId', async (req, res, next) => {
   try {
-    console.log('id?', req.params.orderId)
     const updatedOrder = await Order.findByPk(req.params.orderId)
     const product = await Product.findByPk(req.params.productId)
-    console.log('product?', product)
     await updatedOrder.addProduct(product)
     //how is the quantity being updated
     //how to retrieve the association for Order
