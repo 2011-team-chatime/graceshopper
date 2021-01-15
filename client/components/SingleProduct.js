@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {Button} from '@material-ui/core'
+import {Link} from 'react-router-dom'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class SingleProduct extends React.Component {
       <div>
         {product.title ? (
           <div className="singleProductContainer">
+            <Link to="/products"> &lt; Back to All Books</Link>
             <div>
               <img src={product.imageUrl} className="book-img" />
             </div>
