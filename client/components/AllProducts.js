@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {generatePath} from 'react-router-dom'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
+import {Link} from 'react-router-dom'
 
 class AllProducts extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <div>
+        <div className="filterButtonContainer">
           {genres.map(genre => (
             <Button
               variant="contained"
@@ -50,7 +51,7 @@ class AllProducts extends React.Component {
           ))}
         </div>
         {allProducts.length > 0 ? (
-          <div className="productsContainer">
+          <div className="allProductsContainer">
             {allProducts
               .filter(product => {
                 if (this.state.filteredGenre === '') {
@@ -61,11 +62,12 @@ class AllProducts extends React.Component {
               })
               .map(product => (
                 <div key={product.id} className="productContainer">
-                  <img className="book-img" src={product.imageUrl} />
+                  <Link to={`/products/${product.id}`}>
+                    <img className="bookImg" src={product.imageUrl} />
+                  </Link>
                   <div className="details">
-                    Title: {product.title}
-                    Author: {product.author}
-                    Genre: {product.genre}
+                    <p className="title">{product.title.toUpperCase()}</p>
+                    <p className="price">${product.price / 100}</p>
                   </div>
                 </div>
               ))}
