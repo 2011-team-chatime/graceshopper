@@ -5,11 +5,13 @@ import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 
+const ALL_PRODUCTS = 'All Books'
+
 class AllProducts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      filteredGenre: ''
+      filteredGenre: ALL_PRODUCTS
     }
     this.setGenre = this.setGenre.bind(this)
   }
@@ -27,6 +29,7 @@ class AllProducts extends React.Component {
   render() {
     const allProducts = this.props.products || []
     let genres = [
+      ALL_PRODUCTS,
       'Sci-fi',
       'Mystery',
       'Fiction',
@@ -40,10 +43,13 @@ class AllProducts extends React.Component {
         <div className="filterButtonContainer">
           {genres.map(genre => (
             <Button
-              variant="contained"
-              size="small"
-              type="button"
-              color="primary"
+              key={genre}
+              variant="outlined"
+              size="large"
+              color={
+                this.state.filteredGenre === genre ? 'secondary' : 'default'
+              }
+              className="filter"
               onClick={() => this.setGenre(genre)}
             >
               {genre}
@@ -54,7 +60,7 @@ class AllProducts extends React.Component {
           <div className="allProductsContainer">
             {allProducts
               .filter(product => {
-                if (this.state.filteredGenre === '') {
+                if (this.state.filteredGenre === ALL_PRODUCTS) {
                   return true
                 } else {
                   return product.genre === this.state.filteredGenre
