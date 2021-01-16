@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import {addToCart} from '../store/cart'
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -15,7 +16,7 @@ class SingleProduct extends React.Component {
   }
 
   handleClick() {
-    this.props.addProduct(this.props.product.id)
+    this.props.addToCart(this.props.product)
   }
 
   handleChange(event) {
@@ -83,7 +84,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadSingleProduct: id => dispatch(fetchSingleProduct(id))
+    loadSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addToCart: product => dispatch(addToCart(product))
   }
 }
 
