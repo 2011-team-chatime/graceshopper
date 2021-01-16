@@ -5,7 +5,6 @@ const SET_CART = 'SET_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
 
-
 export const setCart = cart => ({
   type: SET_CART,
   cart
@@ -13,6 +12,13 @@ export const setCart = cart => ({
 
 export const deleteFromCart = (cart, product) => {
   return {type: DELETE_FROM_CART, cart, product}
+}
+
+export const updateCart = cart => {
+  return {
+    type: UPDATE_CART,
+    cart
+  }
 }
 
 // if (window.localStorage.getItem('guestCart'))
@@ -42,7 +48,6 @@ export function fetchCart() {
   }
 }
 
-
 export function deleteItem(cart, product) {
   return async dispatch => {
     try {
@@ -50,11 +55,11 @@ export function deleteItem(cart, product) {
         `/api/orders/${cart.id}/remove/${product.id}`
       )
       dispatch(deleteFromCart(data, product))
-
-export const updateCart = cart => ({
-  type: UPDATE_CART,
-  cart
-})
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 export function addToCart(product) {
   return async dispatch => {
@@ -71,7 +76,6 @@ export function addToCart(product) {
       }
 
       dispatch(updateCart(data))
-
     } catch (error) {
       console.log(error)
     }
@@ -82,7 +86,6 @@ export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart
-
 
     case DELETE_FROM_CART:
       return {
