@@ -72,16 +72,17 @@ class Cart extends React.Component {
             </div>
           ))
         )}
-
-        <Button
-          type="button"
-          variant="contained"
-          size="small"
-          color="primary"
-          className="button"
-        >
-          Go to Checkout
-        </Button>
+        <Link to="/checkout">
+          <Button
+            type="button"
+            variant="contained"
+            size="small"
+            color="primary"
+            className="button"
+          >
+            Go to Checkout
+          </Button>
+        </Link>
       </div>
     )
   }

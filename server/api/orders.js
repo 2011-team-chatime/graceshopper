@@ -43,3 +43,20 @@ router.post('/:orderId/add/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:orderId/checkout', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const order = await Order.findByPk(req.params.orderId)
+      await order.update(req.body)
+      const updatedOrder = await Order.findByPk(req.params.orderId)
+      //how is the quantity being updated
+      //how to retrieve the association for Order
+      res.json(updatedOrder)
+    } else {
+      res.status(404).send({})
+    }
+  } catch (error) {
+    next(error)
+  }
+})
