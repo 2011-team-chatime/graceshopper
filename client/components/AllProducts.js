@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {generatePath} from 'react-router-dom'
+import {generatePath, Link} from 'react-router-dom'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 
@@ -37,9 +37,9 @@ class AllProducts extends React.Component {
     return (
       <div>
         <div>
-          {genres.map((genre, i) => (
+          {genres.map((genre, idx) => (
             <Button
-              key={i}
+              key={idx}
               variant="contained"
               size="small"
               type="button"
@@ -62,7 +62,9 @@ class AllProducts extends React.Component {
               })
               .map(product => (
                 <div key={product.id} className="productContainer">
-                  <img className="book-img" src={product.imageUrl} />
+                  <Link to={`/products/${product.id}`}>
+                    <img className="book-img" src={product.imageUrl} />
+                  </Link>
                   <div className="details">
                     Title: {product.title}
                     Author: {product.author}

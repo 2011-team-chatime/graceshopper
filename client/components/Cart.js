@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {deleteItem, fetchCart} from '../store/cart'
+import {Link} from 'react-router-dom'
+
 
 class Cart extends React.Component {
   constructor() {
@@ -39,7 +41,9 @@ class Cart extends React.Component {
           products.map(product => (
             <div key={product.id} className="cartItemContainer">
               <div>
-                <img src={product.imageUrl} className="book-img" />
+                <Link to={`/products/${product.id}`}>
+                  <img src={product.imageUrl} className="book-img" />
+                </Link>
 
                 <p>Price: ${(product.price / 100).toFixed(2)}</p>
                 <p>Item Subtotal - Add Actual Amount Here</p>
