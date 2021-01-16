@@ -1,11 +1,15 @@
 import React from 'react'
 
-export const Contact = props => {
+const Contact = props => {
   return (
     <div>
       <h3>Contact Us</h3>
-      <div>Email</div>
-      <div>Phone</div>
+      <div>We'd love to hear from you!</div>
+      <br />
+      <div>Email: hello@bookshopper.com</div>
+      <div>Phone: 123-456-7890</div>
     </div>
   )
 }
+
+export default Contact
