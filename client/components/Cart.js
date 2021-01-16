@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
-import {fetchCart} from '../store/cart'
+import {deleteItem, fetchCart} from '../store/cart'
 
 class Cart extends React.Component {
   constructor() {
@@ -10,6 +10,7 @@ class Cart extends React.Component {
       quantity: 1
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
@@ -21,9 +22,14 @@ class Cart extends React.Component {
       [event.target.name]: event.target.value
     })
   }
+
+  handleDelete(product) {
+    this.props.deleteFromCart(this.props.cart, product)
+  }
   render() {
     const userCart = this.props.cart || {}
     const products = this.props.cart.products || []
+
     return (
       <div className="cart-container">
         <h1>Your Shopping Cart</h1>
@@ -35,12 +41,12 @@ class Cart extends React.Component {
               <div>
                 <img src={product.imageUrl} className="book-img" />
 
-                <p>Price: ${product.price / 100}</p>
+                <p>Price: ${(product.price / 100).toFixed(2)}</p>
                 <p>Item Subtotal - Add Actual Amount Here</p>
               </div>
 
               <p>
-                {product.title} | {product.author}
+                {product.title} | by {product.author}
               </p>
 
               <div>
@@ -57,6 +63,9 @@ class Cart extends React.Component {
                   <option value="5">5</option>
                 </select>
                 <Button
+                  onClick={() => {
+                    this.handleDelete(product)
+                  }}
                   type="button"
                   variant="contained"
                   size="small"
@@ -79,6 +88,9 @@ class Cart extends React.Component {
         >
           Go to Checkout
         </Button>
+        {userCart.total > 0 && (
+          <div>Cart Total: ${(userCart.total / 100).toFixed(2)}</div>
+        )}
       </div>
     )
   }
@@ -92,7 +104,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    deleteFromCart: (cart, product) => dispatch(deleteItem(cart, product))
   }
 }
 

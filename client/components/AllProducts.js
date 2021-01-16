@@ -29,7 +29,7 @@ class AllProducts extends React.Component {
       'Sci-fi',
       'Mystery',
       'Fiction',
-      'Nonfinction',
+      'Nonfiction',
       'Young Adult',
       'Other'
     ]
@@ -37,8 +37,9 @@ class AllProducts extends React.Component {
     return (
       <div>
         <div>
-          {genres.map(genre => (
+          {genres.map((genre, i) => (
             <Button
+              key={i}
               variant="contained"
               size="small"
               type="button"
