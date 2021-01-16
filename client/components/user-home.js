@@ -8,8 +8,6 @@ import {connect} from 'react-redux'
 export const UserHome = props => {
   const {name, email, address, creditCard} = props
 
-  console.log(name, email, address, creditCard)
-
   const lastFourDigitsCC =
     'x'.repeat(creditCard.length - 4) + creditCard.slice(creditCard.length - 4)
 
