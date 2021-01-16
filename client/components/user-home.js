@@ -6,17 +6,18 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {user} = props
+  const {name, email, address, creditCard} = props
 
-  const CCNum = user.paymentinfo
+  console.log(name, email, address, creditCard)
+
   const lastFourDigitsCC =
-    'x'.repeat(CCNum.length - 4) + CCNum.slice(CCNum.length - 4)
+    'x'.repeat(creditCard.length - 4) + creditCard.slice(creditCard.length - 4)
 
   return (
     <div>
-      <h3>Welcome, {user.name}</h3>
-      <div>Email: {user.email}</div>
-      <div>Address: {user.address}</div>
+      <h3>Welcome, {name}!</h3>
+      <div>Email: {email}</div>
+      <div>Address: {address}</div>
       <div>Credit Card: {lastFourDigitsCC}</div>
     </div>
   )
@@ -27,7 +28,10 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    user: state.user
+    name: state.user.name,
+    email: state.user.email,
+    address: state.user.address,
+    creditCard: state.user.paymentinfo
   }
 }
 
@@ -37,5 +41,8 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  name: PropTypes.string,
+  email: PropTypes.string,
+  address: PropTypes.string,
+  creditCard: PropTypes.string
 }
