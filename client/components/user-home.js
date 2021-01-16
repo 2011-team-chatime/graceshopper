@@ -6,11 +6,18 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {user} = props
+
+  const CCNum = user.paymentinfo
+  const lastFourDigitsCC =
+    'x'.repeat(CCNum.length - 4) + CCNum.slice(CCNum.length - 4)
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, {user.name}</h3>
+      <div>Email: {user.email}</div>
+      <div>Address: {user.address}</div>
+      <div>Credit Card: {lastFourDigitsCC}</div>
     </div>
   )
 }
@@ -20,7 +27,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    user: state.user
   }
 }
 
