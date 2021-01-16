@@ -29,7 +29,7 @@ class AllProducts extends React.Component {
       'Sci-fi',
       'Mystery',
       'Fiction',
-      'Nonfinction',
+      'Nonfiction',
       'Young Adult',
       'Other'
     ]
