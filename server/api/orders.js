@@ -71,11 +71,10 @@ router.put('/:orderId/checkout', async (req, res, next) => {
     if (req.user) {
       const order = await Order.findByPk(req.params.orderId)
       await order.update(req.body)
-      const updatedOrder = await Order.findByPk(req.params.orderId)
-      res.json(updatedOrder)
+      await order.reload()
+      res.json(order)
     } else {
-      res.status(404).send({})
-
+      res.json({})
     }
   } catch (error) {
     next(error)
