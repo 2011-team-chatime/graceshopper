@@ -10,9 +10,10 @@ export const setCart = cart => ({
   cart
 })
 
-export const deleteFromCart = (cart, product) => {
-  return {type: DELETE_FROM_CART, cart, product}
-}
+export const deleteFromCart = cart => ({
+  type: DELETE_FROM_CART,
+  cart
+})
 
 export const updateCart = cart => {
   return {
@@ -48,13 +49,24 @@ export function fetchCart() {
   }
 }
 
-export function deleteItem(cart, product) {
+export function deleteItem(product) {
   return async dispatch => {
     try {
-      let {data} = await axios.put(
-        `/api/orders/${cart.id}/remove/${product.id}`
-      )
-      dispatch(deleteFromCart(data, product))
+      let {data} = await axios.put(`/api/orders/remove/${product.id}`)
+
+      if (!data.id) {
+        let oldCart = JSON.parse(window.localStorage.getItem('guestCart'))
+        oldCart = {
+          ...oldCart,
+          products: oldCart.products.filter(prod => {
+            return prod.id !== product.id
+          })
+        }
+        window.localStorage.setItem('guestCart', JSON.stringify(oldCart))
+        data = JSON.parse(window.localStorage.getItem('guestCart'))
+      }
+
+      dispatch(deleteFromCart(data))
     } catch (err) {
       console.log(err)
     }
@@ -88,12 +100,7 @@ export default function cartReducer(state = {}, action) {
       return action.cart
 
     case DELETE_FROM_CART:
-      return {
-        ...action.cart,
-        products: action.cart.products.filter(product => {
-          return product.id !== action.product.id
-        })
-      }
+      return action.cart
 
     case UPDATE_CART:
       return action.cart

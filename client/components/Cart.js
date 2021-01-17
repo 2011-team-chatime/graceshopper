@@ -4,7 +4,6 @@ import {Button} from '@material-ui/core'
 import {deleteItem, fetchCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
-
 class Cart extends React.Component {
   constructor() {
     super()
@@ -26,7 +25,7 @@ class Cart extends React.Component {
   }
 
   handleDelete(product) {
-    this.props.deleteFromCart(this.props.cart, product)
+    this.props.deleteFromCart(product)
   }
   render() {
     const userCart = this.props.cart || {}
@@ -109,7 +108,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    deleteFromCart: (cart, product) => dispatch(deleteItem(cart, product))
+    deleteFromCart: product => dispatch(deleteItem(product))
   }
 }
 
