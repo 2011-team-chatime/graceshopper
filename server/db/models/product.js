@@ -34,7 +34,7 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://tajfuny.pl/wp-content/uploads/2020/10/concrete-tokyo-map.jpg'
+      'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1457364208l/29437996._SX318_.jpg'
   },
   genre: {
     type: Sequelize.ENUM(
