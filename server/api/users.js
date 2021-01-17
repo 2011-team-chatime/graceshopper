@@ -30,3 +30,15 @@ router.get('/', isAdmin, async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newGuestData = req.body
+    const [instance, wasCreated] = await User.findOrCreate({
+      where: newGuestData
+    })
+    res.json(instance)
+  } catch (error) {
+    next(error)
+  }
+})

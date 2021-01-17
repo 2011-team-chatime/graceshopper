@@ -40,7 +40,7 @@ export function fetchCart() {
   }
 }
 
-export function updateCart(cart, order) {
+export function placeOrder(cart, order) {
   return async dispatch => {
     try {
       let {data} = await axios.put(`/api/orders/${cart.id}/checkout`, order)
