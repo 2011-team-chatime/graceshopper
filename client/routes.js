@@ -11,6 +11,7 @@ import Contact from './components/Contact'
 import Checkout from './components/Checkout'
 import Confirmation from './components/Confirmation'
 import GuestCheckout from './components/GuestCheckout'
+import CheckoutPath from './components/CheckoutPath'
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/guest" component={GuestCheckout} />
+        <Route exact path="/checkoutpath" component={CheckoutPath} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

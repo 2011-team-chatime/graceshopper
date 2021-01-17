@@ -67,3 +67,15 @@ form div {
   display: flex;
   justify-content: space-between;
 }
+
+.checkoutPathContainer {
+  display: flex;
+  padding: 2em;
+}
+
+.returningCustomerContainer {
+  width: 70%;
+}
+
+.newCustomerContainer {
+}
