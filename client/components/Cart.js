@@ -25,7 +25,7 @@ class Cart extends React.Component {
   }
 
   handleDelete(product) {
-    this.props.deleteFromCart(this.props.cart, product)
+    this.props.deleteFromCart(product)
   }
   render() {
     const userCart = this.props.cart || {}
@@ -122,7 +122,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    deleteFromCart: (cart, product) => dispatch(deleteItem(cart, product))
+    deleteFromCart: product => dispatch(deleteItem(product))
   }
 }
 
