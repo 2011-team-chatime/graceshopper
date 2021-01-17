@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
+import {Link} from 'react-router-dom'
 
 class CheckoutPath extends React.Component {
   constructor() {
@@ -51,29 +52,33 @@ class CheckoutPath extends React.Component {
               discounts!
             </div>
             <br />
-            <Button
-              type="button"
-              variant="contained"
-              size="small"
-              color="primary"
-              className="button"
-            >
-              Create Account
-            </Button>
+            <Link to="/signup">
+              <Button
+                type="button"
+                variant="contained"
+                size="small"
+                color="primary"
+                className="button"
+              >
+                Create Account
+              </Button>
+            </Link>
           </div>
           <div className="guestCheckout">
             <h3>Guest Checkout</h3>
             <div>Checkout as guest and pay with credit card.</div>
             <br />
-            <Button
-              type="button"
-              variant="contained"
-              size="small"
-              color="primary"
-              className="button"
-            >
-              Checkout as Guest
-            </Button>
+            <Link to="/guest">
+              <Button
+                type="button"
+                variant="contained"
+                size="small"
+                color="primary"
+                className="button"
+              >
+                Checkout as Guest
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
