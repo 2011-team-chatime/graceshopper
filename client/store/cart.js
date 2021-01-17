@@ -1,17 +1,34 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios'
 
 const SET_CART = 'SET_CART'
 const CHECKOUT_CART = 'CHECKOUT_CART'
+const DELETE_FROM_CART = 'DELETE_FROM_CART'
+const UPDATE_CART = 'UPDATE_CART'
+
 
 export const setCart = cart => ({
   type: SET_CART,
   cart
 })
 
+
 export const checkoutCart = cart => ({
   type: CHECKOUT_CART,
   cart
 })
+
+export const deleteFromCart = (cart, product) => {
+  return {type: DELETE_FROM_CART, cart, product}
+}
+
+export const updateCart = cart => {
+  return {
+    type: UPDATE_CART,
+    cart
+  }
+}
+
 
 // if (window.localStorage.getItem('guestCart'))
 //   res.json(JSON.parse(window.localStorage.getItem('guestCart')))
@@ -28,7 +45,7 @@ export function fetchCart() {
         } else {
           window.localStorage.setItem(
             'guestCart',
-            JSON.stringify({total: 0, products: ['test']})
+            JSON.stringify({total: 0, products: []})
           )
           data = JSON.parse(window.localStorage.getItem('guestCart'))
         }
@@ -40,7 +57,8 @@ export function fetchCart() {
   }
 }
 
-export function updateCart(cart, order) {
+
+export function placeOrder(cart, order) {
   return async dispatch => {
     try {
       let {data} = await axios.put(`/api/orders/${cart.id}/checkout`, order)
@@ -57,6 +75,36 @@ export function updateCart(cart, order) {
       //   }
       // }
       dispatch(checkoutCart(data))
+
+export function deleteItem(cart, product) {
+  return async dispatch => {
+    try {
+      let {data} = await axios.put(
+        `/api/orders/${cart.id}/remove/${product.id}`
+      )
+      dispatch(deleteFromCart(data, product))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export function addToCart(product) {
+  return async dispatch => {
+    try {
+      let {data} = await axios.post(`/api/orders/add/${product.id}`)
+
+      if (!data.id) {
+        const oldCart = JSON.parse(window.localStorage.getItem('guestCart'))
+        window.localStorage.setItem(
+          'guestCart',
+          JSON.stringify({...oldCart, products: [...oldCart.products, product]})
+        )
+        data = JSON.parse(window.localStorage.getItem('guestCart'))
+      }
+
+      dispatch(updateCart(data))
+
     } catch (error) {
       console.log(error)
     }
@@ -67,8 +115,23 @@ export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart
+
     case CHECKOUT_CART:
       return action.cart
+
+
+    case DELETE_FROM_CART:
+      return {
+        ...action.cart,
+        products: action.cart.products.filter(product => {
+          return product.id !== action.product.id
+        })
+      }
+
+    case UPDATE_CART:
+      return action.cart
+
+
     default:
       return state
   }
