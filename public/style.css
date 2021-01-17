@@ -39,11 +39,12 @@ form div {
   width: 380px;
 }
 
-.box {
+.allProductsWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .filterButtonContainer {
   display: flex;
   margin: 10px;

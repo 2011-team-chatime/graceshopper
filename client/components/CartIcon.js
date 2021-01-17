@@ -10,7 +10,6 @@ class CartIcon extends React.Component {
   }
   render() {
     const {products} = this.props.cart
-    console.log('products', products)
     return (
       <div>
         <ShoppingCartIcon fontSize="large" />

@@ -38,7 +38,7 @@ class AllProducts extends React.Component {
     ]
 
     return (
-      <div className="box">
+      <div className="allProductsWrapper">
         <div className="filterButtonContainer">
           {genres.map(genre => (
             <Button
