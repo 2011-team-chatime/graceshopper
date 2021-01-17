@@ -92,9 +92,8 @@ form div {
   flex-direction: row;
   align-items: center;
   padding: 10px 10px;
+  width: 50%;
   margin-top: 100px;
-  margin-left: 300px;
-  margin-right: 300px;
 }
 
 .singleBookImg {
