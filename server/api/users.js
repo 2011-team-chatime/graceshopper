@@ -3,13 +3,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 const isAdmin = (req, res, next) => {
-  if (req.user) {
-    if (!req.user.isAdmin) {
-      const err = new Error('Not Allowed')
-      err.status = 401
-      return next(err)
-    }
-  } else {
+  if (!req.user || (req.user && !req.user.isAdmin)) {
     const err = new Error('Not Allowed')
     err.status = 401
     return next(err)
@@ -23,7 +17,7 @@ router.get('/', isAdmin, async (req, res, next) => {
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email']
+      attributes: ['id', 'email', 'name']
     })
     res.json(users)
   } catch (err) {

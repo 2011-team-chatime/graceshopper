@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {generatePath} from 'react-router-dom'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
@@ -33,7 +32,7 @@ class AllProducts extends React.Component {
       'Sci-fi',
       'Mystery',
       'Fiction',
-      'Nonfinction',
+      'Nonfiction',
       'Young Adult',
       'Other'
     ]
