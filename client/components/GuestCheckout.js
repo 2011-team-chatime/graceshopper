@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {createGuest} from '../store/user'
-import {Link} from 'react-router-dom'
 
 const defaultState = {
   name: '',
@@ -90,17 +89,10 @@ class GuestCheckout extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    // cart: state.cart,
-    // user: state.user,
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     createGuest: user => dispatch(createGuest(user))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GuestCheckout)
+export default connect(null, mapDispatchToProps)(GuestCheckout)
