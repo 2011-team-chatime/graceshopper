@@ -35,14 +35,27 @@ class Cart extends React.Component {
       <div className="cart-container">
         <h1>Your Shopping Cart</h1>
         {!products.length ? (
-          <h3>Your Cart is Empty</h3>
+          <div>
+            <h3>Your Cart is Empty</h3>
+            <Button
+              type="button"
+              variant="contained"
+              size="small"
+              color="primary"
+              className="button"
+              disabled={true}
+            >
+              Go to Checkout
+            </Button>
+          </div>
         ) : (
-          products.map(product => (
-            <div key={product.id} className="cartItemContainer">
-              <div>
-                <Link to={`/products/${product.id}`}>
-                  <img src={product.imageUrl} className="book-img" />
-                </Link>
+          <div>
+            {products.map(product => (
+              <div key={product.id} className="cartItemContainer">
+                <div>
+                  <Link to={`/products/${product.id}`}>
+                    <img src={product.imageUrl} className="book-img" />
+                  </Link>
 
                 <p>Price: ${(product.price / 100).toFixed(2)}</p>
                 <p>Item Subtotal - Add Actual Amount Here</p>
@@ -78,19 +91,20 @@ class Cart extends React.Component {
                   Delete Item
                 </Button>
               </div>
-            </div>
-          ))
+            ))}
+            <Link to="/checkout">
+              <Button
+                type="button"
+                variant="contained"
+                size="small"
+                color="primary"
+                className="button"
+              >
+                Go to Checkout
+              </Button>
+            </Link>
+          </div>
         )}
-
-        <Button
-          type="button"
-          variant="contained"
-          size="small"
-          color="primary"
-          className="button"
-        >
-          Go to Checkout
-        </Button>
         {userCart.total > 0 && (
           <div>Cart Total: ${(userCart.total / 100).toFixed(2)}</div>
         )}

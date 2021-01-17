@@ -64,3 +64,18 @@ router.put('/:orderId/remove/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:orderId/checkout', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const order = await Order.findByPk(req.params.orderId)
+      await order.update(req.body)
+      const updatedOrder = await Order.findByPk(req.params.orderId)
+      res.json(updatedOrder)
+    } else {
+      res.status(404).send({})
+    }
+  } catch (error) {
+    next(error)
+  }
+})
