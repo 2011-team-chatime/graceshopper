@@ -57,39 +57,40 @@ class Cart extends React.Component {
                     <img src={product.imageUrl} className="book-img" />
                   </Link>
 
-                <p>Price: ${(product.price / 100).toFixed(2)}</p>
-                <p>Item Subtotal - Add Actual Amount Here</p>
-              </div>
+                  <p>Price: ${(product.price / 100).toFixed(2)}</p>
+                  <p>Item Subtotal - Add Actual Amount Here</p>
+                </div>
 
-              <p>
-                {product.title} | by {product.author}
-              </p>
+                <p>
+                  {product.title} | by {product.author}
+                </p>
 
-              <div>
-                <label htmlFor="quantity">Quantity</label>
-                <select
-                  name="quantity"
-                  value={this.state.quantity}
-                  onChange={this.handleChange}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <Button
-                  onClick={() => {
-                    this.handleDelete(product)
-                  }}
-                  type="button"
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                  className="button"
-                >
-                  Delete Item
-                </Button>
+                <div>
+                  <label htmlFor="quantity">Quantity</label>
+                  <select
+                    name="quantity"
+                    value={this.state.quantity}
+                    onChange={this.handleChange}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <Button
+                    onClick={() => {
+                      this.handleDelete(product)
+                    }}
+                    type="button"
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    className="button"
+                  >
+                    Delete Item
+                  </Button>
+                </div>
               </div>
             ))}
             <Link to="/checkout">
@@ -103,10 +104,11 @@ class Cart extends React.Component {
                 Go to Checkout
               </Button>
             </Link>
+
+            {userCart.total > 0 && (
+              <div>Cart Total: ${(userCart.total / 100).toFixed(2)}</div>
+            )}
           </div>
-        )}
-        {userCart.total > 0 && (
-          <div>Cart Total: ${(userCart.total / 100).toFixed(2)}</div>
         )}
       </div>
     )
