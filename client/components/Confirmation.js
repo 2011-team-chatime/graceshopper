@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {fetchCart} from '../store/cart'
 
 class Confirmation extends React.Component {
   constructor() {
@@ -15,6 +16,9 @@ class Confirmation extends React.Component {
   //       [event.target.name]: event.target.value
   //     })
   //   }
+  componentDidMount() {
+    this.props.fetchCart()
+  }
 
   render() {
     const user = this.props.user
@@ -38,4 +42,12 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Confirmation)
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCart: () => {
+      dispatch(fetchCart())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Confirmation)

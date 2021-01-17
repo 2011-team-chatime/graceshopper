@@ -1,16 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
-import {fetchCart, updateCart} from '../store/cart'
+import {fetchCart, placeOrder} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class Checkout extends React.Component {
   constructor() {
     super()
-    this.state = {
-      //   quantity: 1,
-    }
-    // this.handleChange = this.handleChange.bind(this)
+
     this.checkout = this.checkout.bind(this)
   }
 
@@ -22,12 +19,6 @@ class Checkout extends React.Component {
   componentDidMount() {
     this.props.fetchCart()
   }
-
-  //   handleChange(event) {
-  //     this.setState({
-  //       [event.target.name]: event.target.value
-  //     })
-  //   }
 
   render() {
     const user = this.props.user
@@ -74,7 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    checkoutCart: (cart, order) => dispatch(updateCart(cart, order))
+    checkoutCart: (cart, order) => dispatch(placeOrder(cart, order))
   }
 }
 

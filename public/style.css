@@ -146,3 +146,15 @@ form div {
   margin-top: -60px;
   font-size: 20px;
 }
+
+.checkoutPathContainer {
+  display: flex;
+  padding: 2em;
+}
+
+.returningCustomerContainer {
+  width: 70%;
+}
+
+.newCustomerContainer {
+}
