@@ -12,6 +12,7 @@ label {
 }
 
 nav a {
+  /* border: 1px solid green; */
   display: inline-block;
   margin: 1em;
 }
@@ -58,6 +59,7 @@ form div {
 .bookImg {
   height: 420px;
   width: auto;
+  box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
 }
 
 .title {
@@ -81,7 +83,7 @@ form div {
   align-items: center;
   height: 960px;
 
-  border: 3px solid red;
+  /* border: 3px solid red; */
 }
 .singleProductContainer {
   display: flex;
@@ -95,6 +97,7 @@ form div {
 
 .singleBookImg {
   height: 100%;
+  box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
 }
 
 .singleProductInfo {
@@ -120,5 +123,27 @@ form div {
 
 .navbar {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  /* border: 1px solid blue; */
+}
+
+.wrapperForCart {
+  width: 20px;
+  /* border: 1px solid red; */
+}
+.itemsInCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  width: 26px;
+  height: 26px;
+  padding: 1px;
+  position: absolute;
+  right: 10px;
+  margin-top: -60px;
+  font-size: 20px;
+  /* background-color: black; */
+  /* color: white; */
 }
