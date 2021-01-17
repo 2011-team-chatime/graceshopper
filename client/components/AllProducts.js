@@ -1,14 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {generatePath, Link} from 'react-router-dom'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
+import {Link} from 'react-router-dom'
+
+const ALL_PRODUCTS = 'All Books'
 
 class AllProducts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      filteredGenre: ''
+      filteredGenre: ALL_PRODUCTS
     }
     this.setGenre = this.setGenre.bind(this)
   }
@@ -26,6 +28,7 @@ class AllProducts extends React.Component {
   render() {
     const allProducts = this.props.products || []
     let genres = [
+      ALL_PRODUCTS,
       'Sci-fi',
       'Mystery',
       'Fiction',
@@ -36,14 +39,16 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <div>
-          {genres.map((genre, idx) => (
+        <div className="filterButtonContainer">
+          {genres.map(genre => (
             <Button
-              key={idx}
-              variant="contained"
-              size="small"
-              type="button"
-              color="primary"
+              key={genre}
+              variant="outlined"
+              size="large"
+              color={
+                this.state.filteredGenre === genre ? 'secondary' : 'default'
+              }
+              className="filter"
               onClick={() => this.setGenre(genre)}
             >
               {genre}
@@ -51,10 +56,10 @@ class AllProducts extends React.Component {
           ))}
         </div>
         {allProducts.length > 0 ? (
-          <div className="productsContainer">
+          <div className="allProductsContainer">
             {allProducts
               .filter(product => {
-                if (this.state.filteredGenre === '') {
+                if (this.state.filteredGenre === ALL_PRODUCTS) {
                   return true
                 } else {
                   return product.genre === this.state.filteredGenre
@@ -63,12 +68,11 @@ class AllProducts extends React.Component {
               .map(product => (
                 <div key={product.id} className="productContainer">
                   <Link to={`/products/${product.id}`}>
-                    <img className="book-img" src={product.imageUrl} />
+                    <img className="bookImg" src={product.imageUrl} />
                   </Link>
                   <div className="details">
-                    Title: {product.title}
-                    Author: {product.author}
-                    Genre: {product.genre}
+                    <p className="title">{product.title.toUpperCase()}</p>
+                    <p className="price">${product.price / 100}</p>
                   </div>
                 </div>
               ))}

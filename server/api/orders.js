@@ -18,11 +18,8 @@ router.get('/', async (req, res, next) => {
         })
       }
       res.json(order)
-  
     } else {
-
       res.send({})
-
     }
   } catch (err) {
     next(err)
@@ -62,7 +59,6 @@ router.put('/:orderId/remove/:productId', async (req, res, next) => {
       res.send(order)
     } else {
       res.send({})
-
     }
   } catch (error) {
     next(error)

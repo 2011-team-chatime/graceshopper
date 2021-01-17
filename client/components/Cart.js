@@ -4,7 +4,6 @@ import {Button} from '@material-ui/core'
 import {deleteItem, fetchCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 
-
 class Cart extends React.Component {
   constructor() {
     super()
