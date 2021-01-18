@@ -1,15 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const {isAdmin} = require('./util')
 module.exports = router
-
-const isAdmin = (req, res, next) => {
-  if (!req.user || (req.user && !req.user.isAdmin)) {
-    const err = new Error('Not Allowed')
-    err.status = 401
-    return next(err)
-  }
-  next()
-}
 
 router.get('/', isAdmin, async (req, res, next) => {
   try {
