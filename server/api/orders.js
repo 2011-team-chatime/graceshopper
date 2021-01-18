@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 
       await order.updateTotal()
 
-      if (!order) {
+      if (!order.id) {
         order = await Order.create({
           status: 'inCart',
           userId: req.user.id
