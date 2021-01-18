@@ -31,7 +31,9 @@ class Checkout extends React.Component {
 
     return (
       <div>
-        <h3>Checkout</h3>
+        <h3>Review Order</h3>
+        <div>Please confirm that your order details are correct.</div>
+        <br />
         <div>Name: {user.name}</div>
         <div>Address: {user.address}</div>
         <div>Email: {user.email}</div>

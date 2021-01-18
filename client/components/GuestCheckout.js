@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {createGuest} from '../store/user'
+import {addGuestCart} from '../store/cart'
 
 const defaultState = {
   name: '',
@@ -15,12 +16,15 @@ class GuestCheckout extends React.Component {
     super()
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
-    this.addGuest = this.addGuest.bind(this)
+    this.addGuestCart = this.addGuestCart.bind(this)
   }
 
-  addGuest(event) {
+  async addGuestCart(event) {
+    console.log('state user:', this.props.user)
     event.preventDefault()
-    this.props.createGuest(this.state)
+    await this.props.createGuest(this.state)
+    console.log('updated state user:', this.props.user)
+    this.props.createGuestCart(this.props.user)
     this.props.history.push('/checkout')
   }
 
@@ -33,9 +37,9 @@ class GuestCheckout extends React.Component {
   render() {
     return (
       <div>
-        <h3>Customer Information</h3>
+        <h3>Guest Checkout</h3>
+        <div>Enter your billing and shipping information.</div>
 
-        {/* <form onSubmit={this.addGuest}> */}
         <form>
           <div>
             <label htmlFor="name">Name: </label>
@@ -79,7 +83,7 @@ class GuestCheckout extends React.Component {
             size="small"
             color="primary"
             className="button"
-            onClick={this.addGuest}
+            onClick={this.addGuestCart}
           >
             Proceed to Checkout
           </Button>
@@ -88,11 +92,18 @@ class GuestCheckout extends React.Component {
     )
   }
 }
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    createGuest: user => dispatch(createGuest(user))
+    user: state.user,
+    cart: state.cart
   }
 }
 
-export default connect(null, mapDispatchToProps)(GuestCheckout)
+const mapDispatchToProps = dispatch => {
+  return {
+    createGuest: user => dispatch(createGuest(user)),
+    createGuestCart: user => dispatch(addGuestCart(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GuestCheckout)

@@ -61,7 +61,6 @@ export const logout = () => async dispatch => {
 export const createGuest = user => {
   return async dispatch => {
     try {
-      console.log('user', user)
       const {data} = await axios.post('/api/users', user)
       dispatch(addGuest(data))
     } catch (error) {

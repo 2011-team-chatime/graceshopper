@@ -80,3 +80,26 @@ router.put('/:orderId/checkout', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/:userId', async (req, res, next) => {
+  try {
+    let order = await Order.findOne({
+      where: {userId: req.params.userId, status: 'inCart'}
+    })
+
+    if (!order) {
+      order = await Order.create({
+        ...req.body,
+        status: 'inCart',
+        userId: req.params.userId
+      })
+    }
+    // else {
+    //   await order.update(req.body)
+    // }
+    await order.reload()
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
