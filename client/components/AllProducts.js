@@ -72,7 +72,7 @@ class AllProducts extends React.Component {
                   </Link>
                   <div className="details">
                     <p className="title">{product.title.toUpperCase()}</p>
-                    <p className="price">${product.price / 100}</p>
+                    <p className="price">${(product.price / 100).toFixed(2)}</p>
                   </div>
                 </div>
               ))}

@@ -37,7 +37,7 @@ class SingleProduct extends React.Component {
                   {product.title[0].toUpperCase() + product.title.slice(1)}
                 </h1>
                 <h3 style={{color: 'MediumTurquoise'}}>{product.author}</h3>
-                <h3>Price: ${product.price / 100}</h3>
+                <h3>Price: ${(product.price / 100).toFixed(2)}</h3>
               </div>
               <div>
                 <p>{product.description}</p>

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import {CardGiftcardSharp} from '@material-ui/icons'
 import axios from 'axios'
 
 const SET_CART = 'SET_CART'
@@ -9,7 +10,6 @@ const UPDATE_CART = 'UPDATE_CART'
 const CREATE_GUEST_CART = 'CREATE_GUEST_CART'
 
 const DELETE_ONE = 'DELETE_ONE'
-
 
 export const setCart = cart => ({
   type: SET_CART,
@@ -26,7 +26,6 @@ export const checkoutCart = cart => ({
   cart
 })
 
-
 export const updateCart = cart => ({
   type: UPDATE_CART,
   cart
@@ -41,20 +40,12 @@ export const createGuestCart = cart => ({
 //   res.json(JSON.parse(window.localStorage.getItem('guestCart')))
 // else window.localStorage.setItem('guestCart', JSON.stringify({}))
 
-export const updateCart = cart => {
-  return {
-    type: UPDATE_CART,
-    cart
-  }
-}
-
 export const deleteOne = cart => {
   return {
     type: DELETE_ONE,
     cart
   }
 }
-
 
 export function fetchCart() {
   return async dispatch => {
@@ -123,15 +114,45 @@ export function addToCart(product) {
 
       if (!data.id) {
         const oldCart = JSON.parse(window.localStorage.getItem('guestCart'))
-        product.item = {cartQuantity: 1}
-        window.localStorage.setItem(
-          'guestCart',
-          JSON.stringify({
-            ...oldCart,
-            products: [...oldCart.products, product],
-            total: (oldCart.total += product.price)
+
+        const cardIds = oldCart.products.map(prod => {
+          return prod.id
+        })
+
+        if (cardIds.includes(product.id)) {
+          const newProducts = oldCart.products.map(prod => {
+            if (prod.id === product.id) {
+              return {
+                ...prod,
+                item: {...prod.item, cartQuantity: prod.item.cartQuantity + 1}
+              }
+            } else {
+              return prod
+            }
           })
-        )
+
+          window.localStorage.setItem(
+            'guestCart',
+            JSON.stringify({
+              ...oldCart,
+              products: newProducts,
+              total: (oldCart.total += product.price)
+            })
+          )
+        } else {
+          if (!product.item) {
+            product.item = {cartQuantity: 1}
+          }
+          window.localStorage.setItem(
+            'guestCart',
+            JSON.stringify({
+              ...oldCart,
+              products: [...oldCart.products, product],
+              total: (oldCart.total += product.price)
+            })
+          )
+        }
+
         data = JSON.parse(window.localStorage.getItem('guestCart'))
       }
 
@@ -142,7 +163,6 @@ export function addToCart(product) {
   }
 }
 
-
 export function addGuestCart(user) {
   return async dispatch => {
     try {
@@ -150,7 +170,7 @@ export function addGuestCart(user) {
       let {data} = await axios.post(`/api/orders/${user.id}`, cart)
 
       dispatch(createGuestCart(data))
-      } catch (error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -181,11 +201,9 @@ export default function cartReducer(state = {}, action) {
     case UPDATE_CART:
       return action.cart
 
-
     case CREATE_GUEST_CART:
       return action.cart
     case DELETE_ONE:
-
       return action.cart
 
     default:
