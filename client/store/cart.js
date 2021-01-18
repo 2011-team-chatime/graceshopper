@@ -180,6 +180,33 @@ export function subOne(product) {
   return async dispatch => {
     try {
       let {data} = await axios.put(`/api/orders/sub/${product.id}`)
+
+      if (!data.id) {
+        const oldCart = JSON.parse(window.localStorage.getItem('guestCart'))
+
+        const newProducts = oldCart.products.map(prod => {
+          if (prod.id === product.id) {
+            return {
+              ...prod,
+              item: {...prod.item, cartQuantity: prod.item.cartQuantity - 1}
+            }
+          } else {
+            return prod
+          }
+        })
+
+        window.localStorage.setItem(
+          'guestCart',
+          JSON.stringify({
+            ...oldCart,
+            products: newProducts,
+            total: (oldCart.total -= product.price)
+          })
+        )
+
+        data = JSON.parse(window.localStorage.getItem('guestCart'))
+      }
+
       dispatch(deleteOne(data))
     } catch (error) {
       console.log(error)
