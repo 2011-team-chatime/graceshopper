@@ -27,12 +27,12 @@ export const UserHome = props => {
             <h4>Access only for admin:</h4>
             <Button
               variant="contained"
-              sieze="large"
+              size="large"
               style={{
                 backgroundColor: 'black',
                 color: 'white',
                 margin: '10px',
-                width: '300px'
+                width: '330px'
               }}
               onClick={() => props.history.push('/addProduct')}
             >
@@ -40,12 +40,12 @@ export const UserHome = props => {
             </Button>
             <Button
               variant="contained"
-              sieze="large"
+              size="large"
               style={{
                 backgroundColor: 'black',
                 color: 'white',
                 margin: '10px',
-                width: '300px'
+                width: '330px'
               }}
               onClick={() => props.history.push('/products')}
             >

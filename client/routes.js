@@ -12,6 +12,7 @@ import Checkout from './components/Checkout'
 import Confirmation from './components/Confirmation'
 import GuestCheckout from './components/GuestCheckout'
 import CheckoutPath from './components/CheckoutPath'
+import AddProduct from './components/AddProduct'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/confirmation" component={Confirmation} />
+        <Route exact path="/addProduct" component={AddProduct} />
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
