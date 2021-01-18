@@ -162,3 +162,21 @@ form div {
 #quantity-container {
   display: flex;
 }
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.cartItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  width: 380px;
+}

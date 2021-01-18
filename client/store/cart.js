@@ -123,6 +123,7 @@ export function addToCart(product) {
 
       if (!data.id) {
         const oldCart = JSON.parse(window.localStorage.getItem('guestCart'))
+        product.item = {cartQuantity: 1}
         window.localStorage.setItem(
           'guestCart',
           JSON.stringify({
