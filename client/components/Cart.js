@@ -1,16 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
-import {deleteItem, fetchCart} from '../store/cart'
+import {fetchCart, deleteItem, addToCart, subOne} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class Cart extends React.Component {
   constructor() {
     super()
-    this.state = {
-      quantity: 1
-    }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSub = this.handleSub.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
   }
 
@@ -18,10 +16,12 @@ class Cart extends React.Component {
     this.props.fetchCart()
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleAdd(product) {
+    this.props.addToCart(product)
+  }
+
+  handleSub(product) {
+    this.props.subFromCart(product)
   }
 
   handleDelete(product) {
@@ -66,18 +66,29 @@ class Cart extends React.Component {
                 </p>
 
                 <div>
-                  <label htmlFor="quantity">Quantity</label>
-                  <select
-                    name="quantity"
-                    value={this.state.quantity}
-                    onChange={this.handleChange}
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
+                  <div id="quantity-container">
+                    {product.item.cartQuantity > 1 && (
+                      <button
+                        type="button"
+                        onClick={event => {
+                          event.preventDefault()
+                          this.handleSub(product)
+                        }}
+                      >
+                        -
+                      </button>
+                    )}
+                    Quantity: {product.item.cartQuantity}
+                    <button
+                      type="button"
+                      onClick={event => {
+                        event.preventDefault()
+                        this.handleAdd(product)
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
                   <Button
                     onClick={() => {
                       this.handleDelete(product)
@@ -124,7 +135,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    deleteFromCart: product => dispatch(deleteItem(product))
+    deleteFromCart: product => dispatch(deleteItem(product)),
+    addToCart: product => dispatch(addToCart(product)),
+    subFromCart: product => dispatch(subOne(product))
   }
 }
 

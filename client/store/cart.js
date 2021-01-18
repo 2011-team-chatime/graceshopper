@@ -5,6 +5,7 @@ const SET_CART = 'SET_CART'
 const CHECKOUT_CART = 'CHECKOUT_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
+const DELETE_ONE = 'DELETE_ONE'
 
 export const setCart = cart => ({
   type: SET_CART,
@@ -28,9 +29,12 @@ export const updateCart = cart => {
   }
 }
 
-// if (window.localStorage.getItem('guestCart'))
-//   res.json(JSON.parse(window.localStorage.getItem('guestCart')))
-// else window.localStorage.setItem('guestCart', JSON.stringify({}))
+export const deleteOne = cart => {
+  return {
+    type: DELETE_ONE,
+    cart
+  }
+}
 
 export function fetchCart() {
   return async dispatch => {
@@ -129,6 +133,17 @@ export function addToCart(product) {
   }
 }
 
+export function subOne(product) {
+  return async dispatch => {
+    try {
+      let {data} = await axios.put(`/api/orders/sub/${product.id}`)
+      dispatch(deleteOne(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case SET_CART:
@@ -141,6 +156,9 @@ export default function cartReducer(state = {}, action) {
       return action.cart
 
     case UPDATE_CART:
+      return action.cart
+
+    case DELETE_ONE:
       return action.cart
 
     default:

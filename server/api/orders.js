@@ -35,11 +35,20 @@ router.post('/add/:productId', async (req, res, next) => {
         where: {userId: req.user.id, status: 'inCart'}
       })
       const product = await Product.findByPk(req.params.productId)
-      await updatedOrder.addProduct(product)
+      const hasProduct = await updatedOrder.hasProduct(product)
+      if (hasProduct) {
+        const item = await Item.findOne({
+          where: {orderId: updatedOrder.id, productId: product.id}
+        })
+
+        await item.update({cartQuantity: (item.cartQuantity += 1)})
+      } else {
+        await updatedOrder.addProduct(product)
+      }
       await updatedOrder.updateTotal()
+      await updatedOrder.save()
       await updatedOrder.reload()
-      //how is the quantity being updated
-      //how to retrieve the association for Order
+
       res.json(updatedOrder)
     } else {
       res.send({})
@@ -58,9 +67,9 @@ router.put('/remove/:productId', async (req, res, next) => {
       })
       const product = await Product.findByPk(req.params.productId)
       await order.removeProduct(product)
-
-      await order.reload()
       await order.updateTotal()
+      await order.save()
+      await order.reload()
 
       res.json(order)
     } else {
@@ -80,6 +89,57 @@ router.put('/:orderId/checkout', async (req, res, next) => {
       res.json(order)
     } else {
       res.json({})
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+// router.put('/update/:productId', async (req, res, next) => {
+//   try {
+//     if (req.user) {
+//       const order = await Order.findOne({
+//         include: {model: Product},
+//         where: {userId: req.user.id, status: 'inCart'},
+//       })
+//       const product = await Product.findByPk(req.params.productId)
+//       await order.removeProduct(product)
+
+//       await order.reload()
+//       await order.updateTotal()
+
+//       res.json(order)
+//     } else {
+//       res.send({})
+//     }
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+router.put('/sub/:productId', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const updatedOrder = await Order.findOne({
+        include: {model: Product},
+        where: {userId: req.user.id, status: 'inCart'}
+      })
+      const product = await Product.findByPk(req.params.productId)
+      const hasProduct = await updatedOrder.hasProduct(product)
+      if (hasProduct) {
+        const item = await Item.findOne({
+          where: {orderId: updatedOrder.id, productId: product.id}
+        })
+        await item.update({cartQuantity: (item.cartQuantity -= 1)})
+      } else {
+        await updatedOrder.removeProduct(product)
+      }
+      await updatedOrder.updateTotal()
+      await updatedOrder.save()
+      await updatedOrder.reload()
+      res.json(updatedOrder)
+    } else {
+      res.send({})
     }
   } catch (error) {
     next(error)

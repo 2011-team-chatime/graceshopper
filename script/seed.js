@@ -396,8 +396,7 @@ const orders = [
   },
   {
     status: 'inCart',
-    userId: 11,
-    total: 3753
+    userId: 11
   }
 ]
 
