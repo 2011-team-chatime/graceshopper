@@ -95,27 +95,30 @@ router.put('/:orderId/checkout', async (req, res, next) => {
   }
 })
 
-// router.put('/update/:productId', async (req, res, next) => {
-//   try {
-//     if (req.user) {
-//       const order = await Order.findOne({
-//         include: {model: Product},
-//         where: {userId: req.user.id, status: 'inCart'},
-//       })
-//       const product = await Product.findByPk(req.params.productId)
-//       await order.removeProduct(product)
 
-//       await order.reload()
-//       await order.updateTotal()
+router.post('/:userId', async (req, res, next) => {
+  try {
+    let order = await Order.findOne({
+      where: {userId: req.params.userId, status: 'inCart'}
+    })
 
-//       res.json(order)
-//     } else {
-//       res.send({})
-//     }
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+    if (!order) {
+      order = await Order.create({
+        ...req.body,
+        status: 'inCart',
+        userId: req.params.userId
+      })
+    }
+    // else {
+    //   await order.update(req.body)
+    // }
+    await order.reload()
+    res.json(order)
+  } catch (err) {
+    next(err)
+    }
+})
+
 
 router.put('/sub/:productId', async (req, res, next) => {
   try {
@@ -143,5 +146,6 @@ router.put('/sub/:productId', async (req, res, next) => {
     }
   } catch (error) {
     next(error)
+
   }
 })

@@ -30,6 +30,7 @@ class Cart extends React.Component {
   render() {
     const userCart = this.props.cart || {}
     const products = this.props.cart.products || []
+    const user = this.props.user
 
     return (
       <div className="cart-container">
@@ -104,7 +105,7 @@ class Cart extends React.Component {
                 </div>
               </div>
             ))}
-            <Link to="/checkout">
+            <Link to={user.id ? '/checkout' : '/checkoutpath'}>
               <Button
                 type="button"
                 variant="contained"
@@ -128,7 +129,8 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 

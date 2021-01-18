@@ -5,7 +5,11 @@ const SET_CART = 'SET_CART'
 const CHECKOUT_CART = 'CHECKOUT_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 const UPDATE_CART = 'UPDATE_CART'
+
+const CREATE_GUEST_CART = 'CREATE_GUEST_CART'
+
 const DELETE_ONE = 'DELETE_ONE'
+
 
 export const setCart = cart => ({
   type: SET_CART,
@@ -22,6 +26,21 @@ export const checkoutCart = cart => ({
   cart
 })
 
+
+export const updateCart = cart => ({
+  type: UPDATE_CART,
+  cart
+})
+
+export const createGuestCart = cart => ({
+  type: SET_CART,
+  cart
+})
+
+// if (window.localStorage.getItem('guestCart'))
+//   res.json(JSON.parse(window.localStorage.getItem('guestCart')))
+// else window.localStorage.setItem('guestCart', JSON.stringify({}))
+
 export const updateCart = cart => {
   return {
     type: UPDATE_CART,
@@ -35,6 +54,7 @@ export const deleteOne = cart => {
     cart
   }
 }
+
 
 export function fetchCart() {
   return async dispatch => {
@@ -63,18 +83,6 @@ export function placeOrder(cart, order) {
   return async dispatch => {
     try {
       let {data} = await axios.put(`/api/orders/${cart.id}/checkout`, order)
-
-      // if (!data.id) {
-      //   if (window.localStorage.getItem('guestCart')) {
-      //     data = JSON.parse(window.localStorage.getItem('guestCart'))
-      //   } else {
-      //     window.localStorage.setItem(
-      //       'guestCart',
-      //       JSON.stringify({total: 0, products: ['test']})
-      //     )
-      //     data = JSON.parse(window.localStorage.getItem('guestCart'))
-      //   }
-      // }
 
       dispatch(checkoutCart(data))
     } catch (error) {
@@ -133,6 +141,20 @@ export function addToCart(product) {
   }
 }
 
+
+export function addGuestCart(user) {
+  return async dispatch => {
+    try {
+      const cart = JSON.parse(window.localStorage.getItem('guestCart'))
+      let {data} = await axios.post(`/api/orders/${user.id}`, cart)
+
+      dispatch(createGuestCart(data))
+      } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export function subOne(product) {
   return async dispatch => {
     try {
@@ -158,7 +180,11 @@ export default function cartReducer(state = {}, action) {
     case UPDATE_CART:
       return action.cart
 
+
+    case CREATE_GUEST_CART:
+      return action.cart
     case DELETE_ONE:
+
       return action.cart
 
     default:
