@@ -18,7 +18,7 @@ const Order = db.define('order', {
 Order.prototype.updateTotal = function() {
   let sum = 0
   this.products.forEach(product => {
-    sum += product.price
+    sum += product.price * product.item.cartQuantity
   })
   this.total = sum
 }
