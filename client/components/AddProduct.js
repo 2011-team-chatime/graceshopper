@@ -4,13 +4,13 @@ import TextField from '@material-ui/core/TextField'
 import {Button} from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
-import axios from 'axios'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import {addSingleProduct} from '../store/products'
 
 class AddProduct extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       title: '',
       author: '',
@@ -18,7 +18,6 @@ class AddProduct extends React.Component {
       quantity: '',
       genre: '',
       description: '',
-      errorMessage: '',
       addedItem: ''
     }
 
@@ -34,30 +33,28 @@ class AddProduct extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    try {
-      const res = await axios.post('/api/products', this.state)
-      console.log(res)
-
-      this.setState({
-        title: '',
-        author: '',
-        price: '',
-        quantity: '',
-        genre: '',
-        description: '',
-        errorMessage: '',
-        addedItem: res.data.title
-      })
-    } catch (error) {
-      this.setState({
-        errorMessage: `There was a problem creating new Product: ${
-          error.message
-        }`
-      })
-    }
+    const {title, author, price, quantity, genre, description} = this.state
+    this.props.addProduct({title, author, price, quantity, genre, description})
+    this.setState({
+      title: '',
+      author: '',
+      price: '',
+      quantity: '',
+      genre: '',
+      description: '',
+      addedItem: this.state.title
+    })
   }
 
   render() {
+    const genres = [
+      'Sci-fi',
+      'Mystery',
+      'Fiction',
+      'Nonfiction',
+      'Young Adult',
+      'Other'
+    ]
     return (
       <div className="addProductContainer">
         <h2>Add new product</h2>
@@ -110,21 +107,19 @@ class AddProduct extends React.Component {
           />
 
           <FormControl required variant="filled">
-            <InputLabel id="demo-simple-select-filled-label">Genre</InputLabel>
+            <InputLabel id="label">Genre</InputLabel>
             <Select
-              labelId="demo-simple-select-filled-label"
+              labelId="label"
               id="demo-simple-select-filled"
               value={this.state.genre}
               onChange={this.handleChange}
               name="genre"
             >
-              <MenuItem value="Mystery">Mystery</MenuItem>
-              <MenuItem value="Sci-fi">Sci-fi</MenuItem>
-              <MenuItem value="Fiction">Fiction</MenuItem>
-              <MenuItem value="Nonfiction">Nonfiction</MenuItem>
-              <MenuItem value="Young Adult">Young Adult</MenuItem>
-              <MenuItem value="Chrildren">Children</MenuItem>
-              <MenuItem value="Other">Other</MenuItem>
+              {genres.map(genre => (
+                <MenuItem key={genre} value={genre}>
+                  {genre}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <TextField
@@ -152,7 +147,10 @@ class AddProduct extends React.Component {
         </form>
         <div>
           {this.state.addedItem && (
-            <h2>{this.state.addedItem} successfully added!</h2>
+            <h2>
+              The book "{this.state.addedItem}" was successfully added to
+              database!
+            </h2>
           )}
         </div>
       </div>
@@ -160,4 +158,10 @@ class AddProduct extends React.Component {
   }
 }
 
-export default connect(null, null)(AddProduct)
+const mapDispatchToProps = dispatch => {
+  return {
+    addProduct: product => dispatch(addSingleProduct(product))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddProduct)
