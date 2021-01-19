@@ -8,22 +8,15 @@ import {addToCart} from '../store/cart'
 class SingleProduct extends React.Component {
   constructor() {
     super()
-    this.state = {
-      quantity: 1
-    }
-    this.handleChange = this.handleChange.bind(this)
+
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
+  handleClick(event) {
+    event.preventDefault()
     this.props.addToCart(this.props.product)
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
   componentDidMount() {
     this.props.loadSingleProduct(this.props.match.params.productId)
   }
@@ -44,26 +37,13 @@ class SingleProduct extends React.Component {
                   {product.title[0].toUpperCase() + product.title.slice(1)}
                 </h1>
                 <h3 style={{color: 'MediumTurquoise'}}>{product.author}</h3>
-                <h3>Price: ${product.price / 100}</h3>
+                <h3>Price: ${(product.price / 100).toFixed(2)}</h3>
               </div>
               <div>
                 <p>{product.description}</p>
               </div>
 
               <div className="buyContainer">
-                <label htmlFor="quantity">Quantity</label>
-                <select
-                  name="quantity"
-                  value={this.state.quantity}
-                  onChange={this.handleChange}
-                  style={{width: '50px', height: '30px'}}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
                 <div className="buyButton">
                   <Button
                     variant="contained"

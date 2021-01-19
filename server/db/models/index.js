@@ -13,6 +13,8 @@ const Item = require('./item')
 User.hasMany(Order)
 Order.belongsTo(User)
 
+// through: {model: models.PostComment, unique: false}
+
 Product.belongsToMany(Order, {through: Item})
 Order.belongsToMany(Product, {through: Item})
 
