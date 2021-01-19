@@ -7,8 +7,6 @@ export const setProducts = products => ({
   products
 })
 
-// addProduct = product => ({})
-
 export function fetchProducts() {
   return async dispatch => {
     try {
@@ -20,15 +18,13 @@ export function fetchProducts() {
   }
 }
 
-// addSingleProduct()   ===> axio.post()
-
 const initialState = []
 
 // case ADD_PRODUCT return [...state, action.product]
 export default function productsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PRODUCTS:
-      return action.products
+      return action.product
     default:
       return state
   }
