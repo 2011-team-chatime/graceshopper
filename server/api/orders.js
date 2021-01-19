@@ -84,14 +84,14 @@ router.put('/remove/:productId', async (req, res, next) => {
 
 router.put('/:orderId/checkout', async (req, res, next) => {
   try {
-    if (req.user) {
-      const order = await Order.findByPk(req.params.orderId)
-      await order.update(req.body)
-      await order.reload()
-      res.json(order)
-    } else {
-      res.json({})
-    }
+    // if (req.user) {
+    const order = await Order.findByPk(req.params.orderId)
+    await order.update(req.body)
+    await order.reload()
+    res.json(order)
+    // } else {
+    //   res.json({})
+    // }
   } catch (error) {
     next(error)
   }
