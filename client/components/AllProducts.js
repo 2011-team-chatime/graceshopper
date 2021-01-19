@@ -4,6 +4,7 @@ import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete'
+import {removeSingleProduct} from '../store/products'
 
 const ALL_PRODUCTS = 'All Books'
 
@@ -14,6 +15,7 @@ class AllProducts extends React.Component {
       filteredGenre: ALL_PRODUCTS
     }
     this.setGenre = this.setGenre.bind(this)
+    this.removeProductHandler = this.removeProductHandler.bind(this)
   }
 
   setGenre(genre) {
@@ -24,6 +26,10 @@ class AllProducts extends React.Component {
 
   componentDidMount() {
     this.props.fetchProducts()
+  }
+
+  removeProductHandler(product) {
+    this.props.removeProduct(product)
   }
 
   render() {
@@ -98,6 +104,7 @@ class AllProducts extends React.Component {
                         color="secondary"
                         // className={classes.button}
                         startIcon={<DeleteIcon />}
+                        onClick={() => this.removeProductHandler(product)}
                       >
                         DELETE
                       </Button>
@@ -123,7 +130,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: () => dispatch(fetchProducts()),
+    removeProduct: product => dispatch(removeSingleProduct(product))
   }
 }
 
