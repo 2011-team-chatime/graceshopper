@@ -33,13 +33,13 @@ describe('UserHome', () => {
     expect(
       userHome
         .find('div')
-        .at(1)
+        .at(2)
         .text()
     ).to.include('Email: Alasdair@163.com')
     expect(
       userHome
         .find('div')
-        .at(2)
+        .at(3)
         .text()
     ).to.include('Address: 4012 Lillian Crossing')
   })
@@ -47,7 +47,7 @@ describe('UserHome', () => {
     expect(
       userHome
         .find('div')
-        .at(3)
+        .at(4)
         .text()
     ).to.include('Credit Card: xxxxxxxxxxxx7821')
   })
