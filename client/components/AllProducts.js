@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 const ALL_PRODUCTS = 'All Books'
 
@@ -74,6 +75,34 @@ class AllProducts extends React.Component {
                     <p className="title">{product.title.toUpperCase()}</p>
                     <p className="price">${(product.price / 100).toFixed(2)}</p>
                   </div>
+
+                  {this.props.admin && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        width: '300px',
+                        justifyContent: 'space-between',
+                        marginTop: '-30px'
+                      }}
+                    >
+                      <Button
+                        style={{backgroundColor: '#4ba3c3', width: '80px'}}
+                        variant="contained"
+                        color="secondary"
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        style={{backgroundColor: 'tomato', width: '100px'}}
+                        variant="contained"
+                        color="secondary"
+                        // className={classes.button}
+                        startIcon={<DeleteIcon />}
+                      >
+                        DELETE
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ))}
           </div>
@@ -87,7 +116,8 @@ class AllProducts extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    admin: state.user.isAdmin
   }
 }
 
