@@ -4,8 +4,9 @@ import TextField from '@material-ui/core/TextField'
 import {Button} from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
-import FilledInput from '@material-ui/core/FilledInput'
-import InputAdornment from '@material-ui/core/InputAdornment'
+import axios from 'axios'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
 class AddProduct extends React.Component {
   constructor() {
@@ -13,7 +14,12 @@ class AddProduct extends React.Component {
     this.state = {
       title: '',
       author: '',
-      price: ''
+      price: '',
+      quantity: '',
+      genre: '',
+      description: '',
+      errorMessage: '',
+      addedItem: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -22,14 +28,33 @@ class AddProduct extends React.Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.title]: event.target.value,
-      [event.target.author]: event.target.autor,
-      [event.target.price]: event.target.price
+      [event.target.name]: event.target.value
     })
   }
 
   async handleSubmit(event) {
     event.preventDefault()
+    try {
+      const res = await axios.post('/api/products', this.state)
+      console.log(res)
+
+      this.setState({
+        title: '',
+        author: '',
+        price: '',
+        quantity: '',
+        genre: '',
+        description: '',
+        errorMessage: '',
+        addedItem: res.data.title
+      })
+    } catch (error) {
+      this.setState({
+        errorMessage: `There was a problem creating new Product: ${
+          error.message
+        }`
+      })
+    }
   }
 
   render() {
@@ -39,74 +64,97 @@ class AddProduct extends React.Component {
         <form
           onSubmit={this.handleSubmit}
           style={{
-            // border: '2px solid black',
             display: 'flex',
+            justifyContent: 'center',
             flexDirection: 'column',
-            width: '50%'
+            width: '40%',
+            margin: '20px'
           }}
         >
           <TextField
             required
             id="standard-required"
             label="Title"
-            defaultValue=""
             variant="filled"
+            value={this.state.title}
+            name="title"
+            onChange={this.handleChange}
           />
           <TextField
             required
             id="standard-required"
             label="Author"
-            defaultValue=""
             variant="filled"
+            name="author"
+            value={this.state.author}
+            onChange={this.handleChange}
           />
           <TextField
             required
             id="standard-required"
             label="Price"
-            defaultValue=""
             variant="filled"
-            defaultValue="$"
+            name="price"
+            value={this.state.price}
+            onChange={this.handleChange}
           />
 
+          <TextField
+            required
+            id="standard-required"
+            label="Quantity"
+            variant="filled"
+            name="quantity"
+            value={this.state.quantity}
+            onChange={this.handleChange}
+          />
+
+          <FormControl required variant="filled">
+            <InputLabel id="demo-simple-select-filled-label">Genre</InputLabel>
+            <Select
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              value={this.state.genre}
+              onChange={this.handleChange}
+              name="genre"
+            >
+              <MenuItem value="Mystery">Mystery</MenuItem>
+              <MenuItem value="Sci-fi">Sci-fi</MenuItem>
+              <MenuItem value="Fiction">Fiction</MenuItem>
+              <MenuItem value="Nonfiction">Nonfiction</MenuItem>
+              <MenuItem value="Young Adult">Young Adult</MenuItem>
+              <MenuItem value="Chrildren">Children</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            required
+            id="standard-required"
+            label="Description"
+            variant="filled"
+            name="description"
+            value={this.state.description}
+            onChange={this.handleChange}
+          />
           <Button
             type="submit"
+            size="large"
             style={{
               alignSelf: 'center',
               backgroundColor: 'gray',
-              color: 'white'
+              color: 'white',
+              marginTop: '20px'
             }}
             variant="contained"
           >
             Add Product
           </Button>
         </form>
-        {/* <FormControl fullWidth variant="filled">
-            <InputLabel htmlFor="filled-adornment-amount">Price</InputLabel>
-            <FilledInput
-              id="filled-adornment-amount"
-              value={this.state.value}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-            />
-          </FormControl>
-           */}
-        {/* </form> */}
-        {/* <form>
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Author:
-            <input type="text" name="name" />
-          </label>
-        </form> */}
+        <div>
+          {this.state.addedItem && (
+            <h2>{this.state.addedItem} successfully added!</h2>
+          )}
+        </div>
       </div>
     )
   }
