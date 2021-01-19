@@ -50,10 +50,10 @@ class AllProducts extends React.Component {
           {genres.map(genre => (
             <Button
               key={genre}
-              variant="outlined"
+              variant="contained"
               size="large"
               color={
-                this.state.filteredGenre === genre ? 'secondary' : 'default'
+                this.state.filteredGenre === genre ? 'secondary' : 'primary'
               }
               className="filter"
               onClick={() => this.setGenre(genre)}
@@ -92,7 +92,7 @@ class AllProducts extends React.Component {
                       }}
                     >
                       <Button
-                        style={{backgroundColor: '#4ba3c3', width: '80px'}}
+                        style={{backgroundColor: 'gray', width: '80px'}}
                         variant="contained"
                         color="secondary"
                       >
@@ -102,7 +102,6 @@ class AllProducts extends React.Component {
                         style={{backgroundColor: 'tomato', width: '100px'}}
                         variant="contained"
                         color="secondary"
-                        // className={classes.button}
                         startIcon={<DeleteIcon />}
                         onClick={() => this.removeProductHandler(product)}
                       >
