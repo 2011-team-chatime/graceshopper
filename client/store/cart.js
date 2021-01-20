@@ -75,10 +75,9 @@ export function placeOrder(cart, user) {
     try {
       let cartOrder = {status: 'ordered', total: cart.total}
       let {data} = await axios.put(`/api/orders/checkout`, cartOrder)
-
-      if (!data.userId) {
-        window.localStorage.removeItem('guestCart')
-      }
+      console.log('data?', data)
+      window.localStorage.removeItem('guestCart')
+      console.log('after')
       dispatch(checkoutCart(data))
     } catch (error) {
       console.log(error)

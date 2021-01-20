@@ -5,19 +5,26 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      let order = await Order.findOne({
+      let order
+      order = await Order.findOne({
         include: {model: Product},
         where: {userId: req.user.id, status: 'inCart'}
       })
 
-      await order.updateTotal()
-
-      if (!order.id) {
-        order = await Order.create({
+      if (!order) {
+        await Order.create({
           status: 'inCart',
           userId: req.user.id
         })
+
+        order = await Order.findOne({
+          include: {model: Product},
+          where: {userId: req.user.id, status: 'inCart'}
+        })
       }
+
+      await order.updateTotal()
+
       res.json(order)
     } else {
       res.send({})
@@ -103,11 +110,6 @@ router.put('/checkout', async (req, res, next) => {
 
 router.post('/:userId', async (req, res, next) => {
   try {
-    await Order.create({
-      status: 'inCart',
-      userId: req.params.userId
-    })
-
     let order = await Order.findOne({
       include: {model: Product},
       where: {userId: req.params.userId, status: 'inCart'}
@@ -119,7 +121,17 @@ router.post('/:userId', async (req, res, next) => {
       return product
     })
 
-    await order.update({products})
+    const Items = await Promise.all(
+      products.map(product => {
+        return Item.create({
+          quantity: product.item.cartQuantity,
+          orderId: order.id,
+          productId: product.id
+        })
+      })
+    )
+
+    //await order.update({products: products, total: req.body.total})
 
     // create order
     // find order w/ product association

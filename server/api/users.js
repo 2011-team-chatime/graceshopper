@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 const {isAdmin} = require('./util')
 module.exports = router
 
@@ -19,11 +19,10 @@ router.get('/', isAdmin, async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newGuestData = req.body
-    const [instance, wasCreated] = await User.findOrCreate({
-      where: newGuestData
-    })
-    res.json(instance)
+    const user = await User.create(req.body)
+
+    const order = await Order.create({status: 'inCart', userId: user.id})
+    req.login(user, error => (error ? next(error) : res.json(user)))
   } catch (error) {
     next(error)
   }
