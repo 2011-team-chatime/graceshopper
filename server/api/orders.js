@@ -108,39 +108,43 @@ router.put('/checkout', async (req, res, next) => {
   }
 })
 
-router.post('/:userId', async (req, res, next) => {
+router.post('/createcart', async (req, res, next) => {
   try {
-    let order = await Order.findOne({
-      include: {model: Product},
-      where: {userId: req.params.userId, status: 'inCart'}
-    })
-
-    const products = req.body.products.map(product => {
-      product.item.productId = product.id
-      product.item.orderId = order.id
-      return product
-    })
-
-    const Items = await Promise.all(
-      products.map(product => {
-        return Item.create({
-          quantity: product.item.cartQuantity,
-          orderId: order.id,
-          productId: product.id
-        })
+    if (req.user) {
+      let order = await Order.findOne({
+        include: {model: Product},
+        where: {userId: req.user.id, status: 'inCart'}
       })
-    )
 
-    //await order.update({products: products, total: req.body.total})
+      const products = req.body.products.map(product => {
+        product.item.productId = product.id
+        product.item.orderId = order.id
+        return product
+      })
 
-    // create order
-    // find order w/ product association
-    // update order with proper product association and return
-    await order.reload()
-    await order.updateTotal()
-    await order.save()
+      const Items = await Promise.all(
+        products.map(product => {
+          return Item.create({
+            quantity: product.item.cartQuantity,
+            orderId: order.id,
+            productId: product.id
+          })
+        })
+      )
 
-    res.json(order)
+      //await order.update({products: products, total: req.body.total})
+
+      // create order
+      // find order w/ product association
+      // update order with proper product association and return
+      await order.reload()
+      await order.updateTotal()
+      await order.save()
+
+      res.json(order)
+    } else {
+      res.json({})
+    }
   } catch (err) {
     next(err)
   }

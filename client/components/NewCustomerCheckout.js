@@ -25,7 +25,7 @@ class NewCustomerCheckout extends React.Component {
     event.preventDefault()
     await this.props.createGuest(this.state)
     console.log('updated state user:', this.props.user)
-    this.props.createGuestCart(this.props.user)
+    this.props.createGuestCart()
     this.props.history.push('/checkout')
   }
 
@@ -111,7 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createGuest: user => dispatch(createGuest(user)),
-    createGuestCart: user => dispatch(addGuestCart(user))
+    createGuestCart: () => dispatch(addGuestCart())
   }
 }
 
