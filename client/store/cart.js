@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import {useRadioGroup} from '@material-ui/core'
 import {CardGiftcardSharp} from '@material-ui/icons'
 import axios from 'axios'
 
@@ -10,7 +11,6 @@ const UPDATE_CART = 'UPDATE_CART'
 const CREATE_GUEST_CART = 'CREATE_GUEST_CART'
 
 const DELETE_ONE = 'DELETE_ONE'
-const RETURNING_USER_CART = 'RETURNING_USER_CART'
 
 export const setCart = cart => ({
   type: SET_CART,
@@ -34,11 +34,6 @@ export const updateCart = cart => ({
 
 export const createGuestCart = cart => ({
   type: SET_CART,
-  cart
-})
-
-export const returningUserCart = cart => ({
-  type: RETURNING_USER_CART,
   cart
 })
 
@@ -223,19 +218,6 @@ export function subOne(product) {
   }
 }
 
-export function guestToUserCart(user) {
-  return async dispatch => {
-    try {
-      await axios.post(`/auth/login`, user)
-      const cart = JSON.parse(window.localStorage.getItem('guestCart'))
-      let {data} = await axios.post(`/api/orders/createcart`, cart)
-      dispatch(returningUserCart(data))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
 export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case SET_CART:
@@ -253,8 +235,6 @@ export default function cartReducer(state = {}, action) {
     case CREATE_GUEST_CART:
       return action.cart
     case DELETE_ONE:
-      return action.cart
-    case RETURNING_USER_CART:
       return action.cart
 
     default:

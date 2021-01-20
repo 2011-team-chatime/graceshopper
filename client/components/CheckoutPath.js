@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
-import {fetchCart, placeOrder, guestToUserCart} from '../store/cart'
-import {me} from '../store/user'
+import {fetchCart, placeOrder, addGuestCart} from '../store/cart'
+import {guestauth} from '../store/user'
 
 const defaultState = {
   email: '',
@@ -12,17 +12,21 @@ const defaultState = {
 class CheckoutPath extends React.Component {
   constructor() {
     super()
-    this.state = defaultState
+    this.state = {
+      email: '',
+      password: ''
+    }
     this.handleChange = this.handleChange.bind(this)
     this.guestCheckout = this.guestCheckout.bind(this)
     this.userCheckout = this.userCheckout.bind(this)
   }
 
   componentDidMount() {
-    // this.props.fetchCart()
+    this.props.fetchCart()
   }
 
   handleChange(event) {
+    console.log('state', this.state.email)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -33,9 +37,9 @@ class CheckoutPath extends React.Component {
     this.props.history.push('/confirmation')
   }
 
-  userCheckout() {
-    this.props.guestToUserCart(this.state)
-    this.props.getUser()
+  async userCheckout() {
+    await this.props.getUser(this.state)
+    await this.props.createGuestCart()
     this.props.history.push('/checkout')
   }
 
@@ -127,10 +131,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchCart: () => dispatch(fetchCart()),
+    fetchCart: () => dispatch(fetchCart()),
     checkoutCart: cart => dispatch(placeOrder(cart)),
-    guestToUserCart: user => dispatch(guestToUserCart(user)),
-    getUser: () => dispatch(me())
+    createGuestCart: () => dispatch(addGuestCart()),
+    getUser: user => dispatch(guestauth(user))
   }
 }
 

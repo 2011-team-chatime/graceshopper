@@ -13,29 +13,30 @@ class Checkout extends React.Component {
   }
 
   checkout() {
-    this.props.checkoutCart(this.props.cart, this.props.user)
+    this.props.checkoutCart(this.props.cart)
     this.props.history.push('/confirmation')
   }
 
   componentDidMount() {
-    // this.props.getUser()
     this.props.fetchCart()
+    this.props.getUser()
   }
 
   render() {
     console.log('user:', this.props.user)
     console.log('cart:', this.props.cart)
-    const user = this.props.user
-    const cart = this.props.cart
-    const creditCard = user.paymentinfo
+    const user = this.props.user || {}
+    const cart = this.props.cart || {}
+    const creditCard = user.paymentinfo || ''
     const maskedCreditCard =
-      creditCard &&
-      'x'.repeat(creditCard.length - 4) +
-        creditCard.slice(creditCard.length - 4)
+      (creditCard &&
+        'x'.repeat(creditCard.length - 4) +
+          creditCard.slice(creditCard.length - 4)) ||
+      ''
 
     return (
       <div>
-        {user.name ? (
+        {Object.keys(user).length ? (
           <div>
             <h3>Review Order</h3>
             <div>Please confirm that your order details are correct.</div>
@@ -77,7 +78,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    checkoutCart: (cart, user) => dispatch(placeOrder(cart, user)),
+    checkoutCart: cart => dispatch(placeOrder(cart)),
     getUser: () => dispatch(me())
   }
 }

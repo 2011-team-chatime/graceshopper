@@ -116,14 +116,8 @@ router.post('/createcart', async (req, res, next) => {
         where: {userId: req.user.id, status: 'inCart'}
       })
 
-      const products = req.body.products.map(product => {
-        product.item.productId = product.id
-        product.item.orderId = order.id
-        return product
-      })
-
       const Items = await Promise.all(
-        products.map(product => {
+        req.body.products.map(product => {
           return Item.create({
             quantity: product.item.cartQuantity,
             orderId: order.id,
@@ -132,11 +126,6 @@ router.post('/createcart', async (req, res, next) => {
         })
       )
 
-      //await order.update({products: products, total: req.body.total})
-
-      // create order
-      // find order w/ product association
-      // update order with proper product association and return
       await order.reload()
       await order.updateTotal()
       await order.save()
