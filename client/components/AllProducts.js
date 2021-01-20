@@ -95,6 +95,7 @@ class AllProducts extends React.Component {
                         style={{backgroundColor: 'gray', width: '80px'}}
                         variant="contained"
                         color="secondary"
+                        onClick={() => this.props.history.push('/editProduct')}
                       >
                         Edit
                       </Button>
