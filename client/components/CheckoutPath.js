@@ -2,27 +2,22 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import {fetchCart, placeOrder} from '../store/cart'
 
 class CheckoutPath extends React.Component {
   constructor() {
     super()
-    this.state = {
-      //   quantity: 1,
-    }
-    // this.handleChange = this.handleChange.bind(this)
-    // this.checkout = this.checkout.bind(this)
+    this.checkout = this.checkout.bind(this)
   }
 
-  //   checkout() {
-  //     this.props.checkoutCart(this.props.cart, {status: 'ordered'})
-  //     this.props.history.push('/confirmation')
-  //   }
+  componentDidMount() {
+    this.props.fetchCart()
+  }
 
-  //   handleChange(event) {
-  //     this.setState({
-  //       [event.target.name]: event.target.value
-  //     })
-  //   }
+  checkout() {
+    this.props.checkoutCart(this.props.cart, this.props.user)
+    this.props.history.push('/confirmation')
+  }
 
   render() {
     return (
@@ -39,7 +34,6 @@ class CheckoutPath extends React.Component {
             size="small"
             color="primary"
             className="button"
-            //   onClick={this.checkout}
           >
             Continue to Checkout
           </Button>
@@ -52,7 +46,7 @@ class CheckoutPath extends React.Component {
               discounts!
             </div>
             <br />
-            <Link to="/signup">
+            <Link to="/newcustomer">
               <Button
                 type="button"
                 variant="contained"
@@ -68,17 +62,16 @@ class CheckoutPath extends React.Component {
             <h3>Guest Checkout</h3>
             <div>Checkout as guest and pay with credit card.</div>
             <br />
-            <Link to="/guest">
-              <Button
-                type="button"
-                variant="contained"
-                size="small"
-                color="primary"
-                className="button"
-              >
-                Checkout as Guest
-              </Button>
-            </Link>
+            <Button
+              type="button"
+              variant="contained"
+              size="small"
+              color="primary"
+              className="button"
+              onClick={this.checkout}
+            >
+              Checkout as Guest
+            </Button>
           </div>
         </div>
       </div>
@@ -88,15 +81,15 @@ class CheckoutPath extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    //   cart: state.cart,
-    //   user: state.user
+    cart: state.cart,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    //   fetchCart: () => dispatch(fetchCart()),
-    //   checkoutCart: (cart, order) => dispatch(placeOrder(cart, order))
+    fetchCart: () => dispatch(fetchCart()),
+    checkoutCart: (cart, user) => dispatch(placeOrder(cart, user))
   }
 }
 

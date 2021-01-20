@@ -10,7 +10,7 @@ import Cart from './components/Cart'
 import Contact from './components/Contact'
 import Checkout from './components/Checkout'
 import Confirmation from './components/Confirmation'
-import GuestCheckout from './components/GuestCheckout'
+import NewCustomerCheckout from './components/NewCustomerCheckout'
 import CheckoutPath from './components/CheckoutPath'
 import AddProduct from './components/AddProduct'
 import EditProduct from './components/EditProduct'
@@ -39,7 +39,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/guest" component={GuestCheckout} />
+        <Route exact path="/newcustomer" component={NewCustomerCheckout} />
         <Route exact path="/checkoutpath" component={CheckoutPath} />
         {isLoggedIn && (
           <Switch>

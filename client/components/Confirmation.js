@@ -26,9 +26,15 @@ class Confirmation extends React.Component {
     return (
       <div>
         <h3>Order Placed!</h3>
-        <div>Thank you for your order, {user.name}!</div>
-        <div>Your book(s) will be delivered to {user.address} in 2-3 days.</div>
-        <div>We've sent a copy of this order confirmation to {user.email}.</div>
+        <div>Thank you for your order{user.id && `, ${user.name}`}!</div>
+        <div>
+          Your book(s) will be delivered {user.id && ` to ${user.address} `}in
+          2-3 days.
+        </div>
+        <div>
+          {user.id &&
+            `We've sent a copy of this order confirmation to ${user.email}.`}
+        </div>
         <br />
         <div>Happy reading!</div>
       </div>

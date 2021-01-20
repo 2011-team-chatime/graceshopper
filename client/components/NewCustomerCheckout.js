@@ -8,10 +8,11 @@ const defaultState = {
   name: '',
   address: '',
   paymentinfo: '',
-  email: ''
+  email: '',
+  password: ''
 }
 
-class GuestCheckout extends React.Component {
+class NewCustomerCheckout extends React.Component {
   constructor() {
     super()
     this.state = defaultState
@@ -66,6 +67,14 @@ class GuestCheckout extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
+            <label htmlFor="password">Password: </label>
+            <input
+              name="password"
+              type="password"
+              placeholder="required"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
             <label htmlFor="paymentinfo">Credit Card: </label>
             <input
               name="paymentinfo"
@@ -106,4 +115,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GuestCheckout)
+export default connect(mapStateToProps, mapDispatchToProps)(NewCustomerCheckout)

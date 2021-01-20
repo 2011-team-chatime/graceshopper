@@ -12,7 +12,7 @@ class Checkout extends React.Component {
   }
 
   checkout() {
-    this.props.checkoutCart(this.props.cart, {status: 'ordered'})
+    this.props.checkoutCart(this.props.cart, this.props.user)
     this.props.history.push('/confirmation')
   }
 
@@ -67,7 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    checkoutCart: (cart, order) => dispatch(placeOrder(cart, order))
+    checkoutCart: (cart, user) => dispatch(placeOrder(cart, user))
   }
 }
 

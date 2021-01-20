@@ -70,11 +70,14 @@ export function fetchCart() {
   }
 }
 
-export function placeOrder(cart, order) {
+export function placeOrder(cart, user) {
   return async dispatch => {
     try {
-      let {data} = await axios.put(`/api/orders/${cart.id}/checkout`, order)
-
+      let cartOrder = {status: 'ordered', total: cart.total}
+      let {data} = await axios.put(`/api/orders/checkout`, cartOrder)
+      console.log('data?', data)
+      window.localStorage.removeItem('guestCart')
+      console.log('after')
       dispatch(checkoutCart(data))
     } catch (error) {
       console.log(error)
