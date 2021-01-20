@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete'
+import {removeSingleProduct} from '../store/products'
 
 const ALL_PRODUCTS = 'All Books'
 
@@ -13,6 +15,7 @@ class AllProducts extends React.Component {
       filteredGenre: ALL_PRODUCTS
     }
     this.setGenre = this.setGenre.bind(this)
+    this.removeProductHandler = this.removeProductHandler.bind(this)
   }
 
   setGenre(genre) {
@@ -23,6 +26,10 @@ class AllProducts extends React.Component {
 
   componentDidMount() {
     this.props.fetchProducts()
+  }
+
+  removeProductHandler(product) {
+    this.props.removeProduct(product)
   }
 
   render() {
@@ -43,10 +50,10 @@ class AllProducts extends React.Component {
           {genres.map(genre => (
             <Button
               key={genre}
-              variant="outlined"
+              variant="contained"
               size="large"
               color={
-                this.state.filteredGenre === genre ? 'secondary' : 'default'
+                this.state.filteredGenre === genre ? 'secondary' : 'primary'
               }
               className="filter"
               onClick={() => this.setGenre(genre)}
@@ -74,6 +81,37 @@ class AllProducts extends React.Component {
                     <p className="title">{product.title.toUpperCase()}</p>
                     <p className="price">${(product.price / 100).toFixed(2)}</p>
                   </div>
+
+                  {this.props.admin && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        width: '300px',
+                        justifyContent: 'space-between',
+                        marginTop: '-30px'
+                      }}
+                    >
+                      <Button
+                        style={{backgroundColor: 'gray', width: '80px'}}
+                        variant="contained"
+                        color="secondary"
+                        onClick={() =>
+                          this.props.history.push(`/editProduct/${product.id}`)
+                        }
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        style={{backgroundColor: 'tomato', width: '100px'}}
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<DeleteIcon />}
+                        onClick={() => this.removeProductHandler(product)}
+                      >
+                        DELETE
+                      </Button>
+                    </div>
+                  )}
                 </div>
               ))}
           </div>
@@ -87,13 +125,15 @@ class AllProducts extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    admin: state.user.isAdmin
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: () => dispatch(fetchProducts()),
+    removeProduct: product => dispatch(removeSingleProduct(product))
   }
 }
 

@@ -8,7 +8,6 @@ import {addToCart} from '../store/cart'
 class SingleProduct extends React.Component {
   constructor() {
     super()
-
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -40,6 +39,7 @@ class SingleProduct extends React.Component {
                 <h3>Price: ${(product.price / 100).toFixed(2)}</h3>
               </div>
               <div>
+                <p>{product.genre}</p>
                 <p>{product.description}</p>
               </div>
 
@@ -53,6 +53,24 @@ class SingleProduct extends React.Component {
                   >
                     Add to cart
                   </Button>
+                  {this.props.admin && (
+                    <Button
+                      variant="contained"
+                      size="large"
+                      style={{
+                        backgroundColor: 'gray',
+                        color: 'white',
+                        marginLeft: '20px'
+                      }}
+                      onClick={() =>
+                        this.props.history.push(
+                          `/editProduct/${this.props.product.id}`
+                        )
+                      }
+                    >
+                      Edit
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -67,7 +85,8 @@ class SingleProduct extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    product: state.product
+    product: state.product,
+    admin: state.user.isAdmin
   }
 }
 

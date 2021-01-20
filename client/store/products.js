@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const SET_PRODUCTS = 'SET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
+const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 export const setProducts = products => ({
   type: SET_PRODUCTS,
@@ -10,6 +11,11 @@ export const setProducts = products => ({
 
 export const addProduct = product => ({
   type: ADD_PRODUCT,
+  product
+})
+
+export const removeProduct = product => ({
+  type: REMOVE_PRODUCT,
   product
 })
 
@@ -35,6 +41,17 @@ export function addSingleProduct(product) {
   }
 }
 
+export function removeSingleProduct(product) {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/products/${product.id}`)
+      dispatch(removeProduct(product))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 const initialState = []
 
 export default function productsReducer(state = initialState, action) {
@@ -43,6 +60,8 @@ export default function productsReducer(state = initialState, action) {
       return action.products
     case ADD_PRODUCT:
       return [...state, action.product]
+    case REMOVE_PRODUCT:
+      return state.filter(product => product.id !== action.product.id)
     default:
       return state
   }
