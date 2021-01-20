@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import {useRadioGroup} from '@material-ui/core'
 import {CardGiftcardSharp} from '@material-ui/icons'
 import axios from 'axios'
 
@@ -70,7 +71,7 @@ export function fetchCart() {
   }
 }
 
-export function placeOrder(cart, user) {
+export function placeOrder(cart) {
   return async dispatch => {
     try {
       let cartOrder = {status: 'ordered', total: cart.total}
@@ -166,11 +167,11 @@ export function addToCart(product) {
   }
 }
 
-export function addGuestCart(user) {
+export function addGuestCart() {
   return async dispatch => {
     try {
       const cart = JSON.parse(window.localStorage.getItem('guestCart'))
-      let {data} = await axios.post(`/api/orders/${user.id}`, cart)
+      let {data} = await axios.post(`/api/orders/createcart`, cart)
 
       dispatch(createGuestCart(data))
     } catch (error) {

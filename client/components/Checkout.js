@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {fetchCart, placeOrder} from '../store/cart'
+import {me} from '../store/user'
 import {Link} from 'react-router-dom'
 
 class Checkout extends React.Component {
@@ -12,46 +13,56 @@ class Checkout extends React.Component {
   }
 
   checkout() {
-    this.props.checkoutCart(this.props.cart, this.props.user)
+    this.props.checkoutCart(this.props.cart)
     this.props.history.push('/confirmation')
   }
 
   componentDidMount() {
     this.props.fetchCart()
+    this.props.getUser()
   }
 
   render() {
-    const user = this.props.user
-    const cart = this.props.cart
-    const creditCard = user.paymentinfo
+    console.log('user:', this.props.user)
+    console.log('cart:', this.props.cart)
+    const user = this.props.user || {}
+    const cart = this.props.cart || {}
+    const creditCard = user.paymentinfo || ''
     const maskedCreditCard =
-      creditCard &&
-      'x'.repeat(creditCard.length - 4) +
-        creditCard.slice(creditCard.length - 4)
+      (creditCard &&
+        'x'.repeat(creditCard.length - 4) +
+          creditCard.slice(creditCard.length - 4)) ||
+      ''
 
     return (
       <div>
-        <h3>Review Order</h3>
-        <div>Please confirm that your order details are correct.</div>
-        <br />
-        <div>Name: {user.name}</div>
-        <div>Address: {user.address}</div>
-        <div>Email: {user.email}</div>
-        <div>Credit Card: {maskedCreditCard}</div>
-        <br />
-        <div>Order Total: ${(cart.total / 100).toFixed(2)}</div>
-        <div>status: {cart.status}</div>
-        <br />
-        <Button
-          type="button"
-          variant="contained"
-          size="small"
-          color="primary"
-          className="button"
-          onClick={this.checkout}
-        >
-          Place Order
-        </Button>
+        {Object.keys(user).length ? (
+          <div>
+            <h3>Review Order</h3>
+            <div>Please confirm that your order details are correct.</div>
+            <br />
+            <div>Name: {user.name}</div>
+            <div>Address: {user.address}</div>
+            <div>Email: {user.email}</div>
+            <div>Credit Card: {maskedCreditCard}</div>
+            <br />
+            <div>Order Total: ${(cart.total / 100).toFixed(2)}</div>
+            <div>status: {cart.status}</div>
+            <br />
+            <Button
+              type="button"
+              variant="contained"
+              size="small"
+              color="primary"
+              className="button"
+              onClick={this.checkout}
+            >
+              Place Order
+            </Button>
+          </div>
+        ) : (
+          <div>Loading... Please wait</div>
+        )}
       </div>
     )
   }
@@ -67,7 +78,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    checkoutCart: (cart, user) => dispatch(placeOrder(cart, user))
+    checkoutCart: cart => dispatch(placeOrder(cart)),
+    getUser: () => dispatch(me())
   }
 }
 
