@@ -32,4 +32,37 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
+
+  describe('all fields are correct', () => {
+    let user
+
+    beforeEach(async () => {
+      user = await User.create({
+        name: 'Donna',
+        isAdmin: false,
+        address: '74 Bunting Trail',
+        paymentinfo: '3579187745757906',
+        email: 'dmcgroarty0@jiathis.com',
+        password: 'sAEwCzN'
+      })
+    })
+
+    describe('name field', () => {
+      it('is not null', () => {
+        expect(user.name).to.be.equal('Donna')
+      })
+      it('is a string', () => {
+        expect(user.name).to.be.a('string')
+      })
+    })
+
+    describe('address field', () => {
+      it('is not null', () => {
+        expect(user.address).to.be.equal('74 Bunting Trail')
+      })
+      it('is a string', () => {
+        expect(user.address).to.be.a('string')
+      })
+    })
+  })
 }) // end describe('User model')
