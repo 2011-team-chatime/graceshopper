@@ -227,15 +227,27 @@ export default function cartReducer(state = {}, action) {
       return action.cart
 
     case DELETE_FROM_CART:
-      return action.cart
+      return {
+        ...state,
+        products: action.cart.products,
+        total: action.cart.total
+      }
 
     case UPDATE_CART:
-      return action.cart
+      return {
+        ...state,
+        products: action.cart.products,
+        total: action.cart.total
+      }
 
     case CREATE_GUEST_CART:
       return action.cart
     case DELETE_ONE:
-      return action.cart
+      return {
+        ...state,
+        products: action.cart.products,
+        total: action.cart.total
+      }
 
     default:
       return state
