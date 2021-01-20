@@ -10,7 +10,7 @@ const users = [
     isAdmin: true,
     address: '4012 Lillian Crossing',
     paymentinfo: '5602234373317821',
-    email: 'Alasdair@163.com',
+    email: 'admin@bookshopper.com',
     password: '12345*'
   },
   {
@@ -26,8 +26,8 @@ const users = [
     isAdmin: false,
     address: '044 Pankratz Lane',
     paymentinfo: '5018362002671975',
-    email: 'msmalridge2@webmd.com',
-    password: 'SF7SCrg'
+    email: 'user@gmail.com',
+    password: '12345*'
   },
   {
     name: 'Elga',
