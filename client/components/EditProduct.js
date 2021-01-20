@@ -1,39 +1,67 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import ProductForm from './ProductForm'
+import {fetchSingleProduct} from '../store/singleProduct'
+import axios from 'axios'
 
 class EditProduct extends React.Component {
-  // constructor(props) {
-  //   super(props) {
-  //     this.state = {
-  //       this.title = this.props.product.title
-  //     }
-  //   }
+  constructor(props) {
+    super(props)
+    const {
+      title,
+      author,
+      price,
+      quantity,
+      genre,
+      description
+    } = this.props.product
+
+    this.state = {
+      title,
+      author,
+      price,
+      quantity,
+      genre,
+      description
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  async handleSubmit(event) {
+    const {productId} = this.props.match.params
+    event.preventDefault()
+    try {
+      await axios.put(`/api/products/${productId}`, this.state)
+      this.props.history.push(`/products/${productId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  componentDidMount() {
+    this.props.loadSingleProduct(this.props.match.params.productId)
+  }
   render() {
     return (
-      <div className="singleProductWrapper">
-        {product.title ? (
-          <div className="singleProductContainer">
-            <img src={product.imageUrl} className="singleBookImg" />
-
-            <div className="singleProductInfo">
-              <div>
-                <h1>
-                  {product.title[0].toUpperCase() + product.title.slice(1)}
-                </h1>
-                <h3 style={{color: 'MediumTurquoise'}}>{product.author}</h3>
-                <h3>Price: ${(product.price / 100).toFixed(2)}</h3>
-              </div>
-              <div>
-                <p>{product.description}</p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <span>Book not found</span>
-        )}
-      </div>
+      <ProductForm
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        title={this.state.title}
+        author={this.state.author}
+        price={this.state.price}
+        quantity={this.state.quantity}
+        genre={this.state.genre}
+        description={this.state.description}
+        buttonName="Save Changes"
+      />
     )
-    // }
   }
 }
 
@@ -43,12 +71,10 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-//     addToCart: (product) => dispatch(addToCart(product)),
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    loadSingleProduct: id => dispatch(fetchSingleProduct(id))
+  }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(EditProduct)
-export default connect(mapStateToProps, null)(EditProduct)
+export default connect(mapStateToProps, mapDispatchToProps)(EditProduct)

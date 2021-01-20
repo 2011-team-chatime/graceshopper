@@ -44,7 +44,6 @@ export function addSingleProduct(product) {
 export function removeSingleProduct(product) {
   return async dispatch => {
     try {
-      console.log('product i store is', product)
       await axios.delete(`/api/products/${product.id}`)
       dispatch(removeProduct(product))
     } catch (error) {

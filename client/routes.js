@@ -35,7 +35,7 @@ class Routes extends Component {
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/addProduct" component={AddProduct} />
-        <Route exact path="/editProduct" component={EditProduct} />
+        <Route exact path="/editProduct/:productId" component={EditProduct} />
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
