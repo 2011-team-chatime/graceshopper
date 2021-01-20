@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import {fetchCart, deleteItem, addToCart, subOne} from '../store/cart'
 import {Link} from 'react-router-dom'
+import sortBy from 'lodash.sortby'
 
 class Cart extends React.Component {
   constructor() {
@@ -31,11 +32,16 @@ class Cart extends React.Component {
     const userCart = this.props.cart || {}
     const products = this.props.cart.products || []
     const user = this.props.user
+    const sortedProducts = sortBy(products, [
+      function(o) {
+        return o.id
+      }
+    ])
 
     return (
       <div className="cart-container">
         <h1>Your Shopping Cart</h1>
-        {!products.length ? (
+        {!sortedProducts.length ? (
           <div>
             <h3>Your Cart is Empty</h3>
             <Button
@@ -51,7 +57,7 @@ class Cart extends React.Component {
           </div>
         ) : (
           <div>
-            {products.map(product => (
+            {sortedProducts.map(product => (
               <div key={product.id} className="cartItemContainer">
                 <div>
                   <Link to={`/products/${product.id}`}>
@@ -59,7 +65,12 @@ class Cart extends React.Component {
                   </Link>
 
                   <p>Price: ${(product.price / 100).toFixed(2)}</p>
-                  <p>Item Subtotal - Add Actual Amount Here</p>
+                  <p>
+                    Item Subtotal:$
+                    {(product.price * product.item.cartQuantity / 100).toFixed(
+                      2
+                    )}
+                  </p>
                 </div>
 
                 <p>
