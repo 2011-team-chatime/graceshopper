@@ -50,6 +50,9 @@ class Checkout extends React.Component {
             <div>status: {cart.status}</div>
             <br />
             <Button
+              style={{
+                backgroundColor: '#336699'
+              }}
               type="button"
               variant="contained"
               size="small"

@@ -32,23 +32,28 @@ class SingleProduct extends React.Component {
 
             <div className="singleProductInfo">
               <div>
-                <h1>
+                <h1 style={{color: '#5C677D'}}>
                   {product.title[0].toUpperCase() + product.title.slice(1)}
                 </h1>
-                <h3 style={{color: 'MediumTurquoise'}}>{product.author}</h3>
-                <h3>Price: ${(product.price / 100).toFixed(2)}</h3>
+                <h3 style={{color: '#336699'}}>{product.author}</h3>
+                <h3 style={{color: '#5C677D'}}>
+                  Price: ${(product.price / 100).toFixed(2)}
+                </h3>
               </div>
               <div>
-                <p>{product.genre}</p>
-                <p>{product.description}</p>
+                <p style={{color: '#5C677D'}}>{product.genre}</p>
+                <p style={{color: '#5C677D'}}>{product.description}</p>
               </div>
 
               <div className="buyContainer">
                 <div className="buyButton">
                   <Button
+                    style={{
+                      backgroundColor: '#336699'
+                    }}
                     variant="contained"
                     size="large"
-                    color="secondary"
+                    color="primary"
                     onClick={this.handleClick}
                   >
                     Add to cart

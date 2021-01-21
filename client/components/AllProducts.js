@@ -51,10 +51,8 @@ class AllProducts extends React.Component {
             <Button
               key={genre}
               variant="contained"
-              size="large"
-              color={
-                this.state.filteredGenre === genre ? 'secondary' : 'primary'
-              }
+              size="small"
+              color={this.state.filteredGenre === genre ? 'primary' : 'default'}
               className="filter"
               onClick={() => this.setGenre(genre)}
             >
@@ -74,8 +72,8 @@ class AllProducts extends React.Component {
               })
               .map(product => (
                 <div key={product.id} className="productContainer">
-                  <Link to={`/products/${product.id}`}>
-                    <img className="bookImg" src={product.imageUrl} />
+                  <Link to={`/products/${product.id}`} className="bookImg">
+                    <img src={product.imageUrl} />
                   </Link>
                   <div className="details">
                     <p className="title">{product.title.toUpperCase()}</p>
