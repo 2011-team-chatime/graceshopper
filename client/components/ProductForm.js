@@ -107,7 +107,7 @@ export default props => {
         size="large"
         style={{
           alignSelf: 'center',
-          backgroundColor: 'gray',
+          backgroundColor: '#FFADAD',
           color: 'white',
           marginTop: '20px'
         }}

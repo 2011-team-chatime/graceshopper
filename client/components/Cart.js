@@ -50,6 +50,7 @@ class Cart extends React.Component {
               variant="contained"
               size="small"
               color="primary"
+              style={{backgroundColor: '#FFADAD'}}
               className="button"
               disabled={true}
             >
@@ -104,6 +105,7 @@ class Cart extends React.Component {
             <Link to={user.id ? '/checkout' : '/checkoutpath'}>
               <Button
                 type="button"
+                style={{backgroundColor: '#FFADAD'}}
                 variant="contained"
                 size="small"
                 color="primary"
