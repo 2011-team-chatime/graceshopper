@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import {fetchCart} from '../store/cart'
 import {render} from 'enzyme'
+import {Link} from 'react-router-dom'
 
 class CartIcon extends React.Component {
   componentDidMount() {
@@ -11,12 +12,12 @@ class CartIcon extends React.Component {
   render() {
     const {products} = this.props.cart
     return (
-      <div>
+      <Link to="/cart">
         <ShoppingCartIcon fontSize="large" />
         <div className="itemsInCart">
           <div>{products ? products.length : 0}</div>
         </div>
-      </div>
+      </Link>
     )
   }
 }

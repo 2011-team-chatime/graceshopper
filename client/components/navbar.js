@@ -7,48 +7,50 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import CartIcon from './CartIcon'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div className="navbar">
-    <div className="titleNav">
-      <Link to="/">
-        <h1>bookshopper</h1>
-      </Link>
-    </div>
-    <div>
-      <nav className="navcomponent">
-        {isLoggedIn ? (
-          <div>
-            {/* The navbar will show these links after you log in */}
-            <span>
-              <Link to="/products">Books</Link>
-              <Link to="/contact">Contact Us</Link>
+  <div>
+    <div className="navbar">
+      <div className="titleNav">
+        <Link to="/">
+          <h1>bookshopper</h1>
+        </Link>
+      </div>
+      <div>
+        <nav className="navcomponent">
+          {isLoggedIn ? (
+            <div>
+              {/* The navbar will show these links after you log in */}
+              <span>
+                <Link to="/products">Books</Link>
+                <Link to="/contact">Contact Us</Link>
 
-              <Link to="/home">My Profile</Link>
-              <a href="#" onClick={handleClick}>
-                Logout
-              </a>
-              <Link to="/cart">
+                <Link to="/home">My Profile</Link>
+                <a href="#" onClick={handleClick}>
+                  Logout
+                </a>
+                {/* <Link to="/cart"> */}
                 <CartIcon />
-              </Link>
-            </span>
-          </div>
-        ) : (
-          <div>
-            {/* The navbar will show these links before you log in */}
-            <span>
-              <Link to="/products">Books</Link>
-              <Link to="/contact">Contact Us</Link>
+                {/* </Link> */}
+              </span>
+            </div>
+          ) : (
+            <div>
+              {/* The navbar will show these links before you log in */}
+              <span>
+                <Link to="/products">Books</Link>
+                <Link to="/contact">Contact Us</Link>
 
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/cart">
-                <CartIcon />
-              </Link>
-            </span>
-          </div>
-        )}
-      </nav>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+                <Link to="/cart">
+                  <CartIcon />
+                </Link>
+              </span>
+            </div>
+          )}
+        </nav>
+      </div>
+      <hr />
     </div>
-    <hr />
   </div>
 )
 
