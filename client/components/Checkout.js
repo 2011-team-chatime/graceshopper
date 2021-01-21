@@ -35,7 +35,7 @@ class Checkout extends React.Component {
       ''
 
     return (
-      <div>
+      <div className="checkout">
         {Object.keys(user).length ? (
           <div>
             <h3>Review Order</h3>
@@ -47,7 +47,7 @@ class Checkout extends React.Component {
             <div>Credit Card: {maskedCreditCard}</div>
             <br />
             <div>Order Total: ${(cart.total / 100).toFixed(2)}</div>
-            <div>status: {cart.status}</div>
+
             <br />
             <Button
               style={{

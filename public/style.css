@@ -6,6 +6,51 @@ body {
   padding-top: 50px;
 }
 
+.loginForm {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginForm div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homeProfile {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profileContainer span {
+  border-bottom: 0.5px dotted #336699;
+  background-color: #d9d9d9;
+}
+
+.profileContainer div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homestyle {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  font-size: larger;
+  z-index: 999;
+  position: absolute;
+}
+
 a {
   text-decoration: none;
 }
@@ -24,7 +69,7 @@ label {
 }
 
 .navbar {
-  display: flex;
+display: flex;
   align-items: center;
   /* background: linear-gradient(45deg, #336699, #f4f3ee); */
   background-color: #336699;
@@ -82,11 +127,11 @@ form div {
   flex-direction: column;
   align-items: center;
   margin: 30px;
-  width: 450px;
+  width: 30%;
   border-radius: 20px;
   justify-content: space-between;
   padding: 20px;
-  background-color: gainsboro;
+  background-color: #d9d9d9;
   box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
 }
 
@@ -113,8 +158,8 @@ form div {
 }
 
 .bookImg {
-  height: 420px;
-  width: auto;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .title {
@@ -147,6 +192,7 @@ form div {
 }
 
 .singleBookImg {
+  width: 60%;
   border-radius: 10px;
   box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
 }
@@ -266,12 +312,14 @@ form div {
 }
 
 .confirmation {
-  left: 50%;
-}
-
-/* .confirmation {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-} */
+  font-size: 20px;
+}
+
+.checkout {
+  font-size: 20px;
+}
