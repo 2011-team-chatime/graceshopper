@@ -50,9 +50,7 @@ class Checkout extends React.Component {
 
             <br />
             <Button
-              style={{
-                backgroundColor: '#336699'
-              }}
+              style={{backgroundColor: '#FFADAD'}}
               type="button"
               variant="contained"
               size="small"

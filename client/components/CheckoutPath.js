@@ -74,9 +74,7 @@ class CheckoutPath extends React.Component {
             </div>
             <br />
             <Button
-              style={{
-                backgroundColor: '#336699'
-              }}
+              style={{backgroundColor: '#FFADAD'}}
               type="button"
               variant="contained"
               size="small"
@@ -98,9 +96,7 @@ class CheckoutPath extends React.Component {
             <br />
             <Link to="/newcustomer">
               <Button
-                style={{
-                  backgroundColor: '#336699'
-                }}
+                style={{backgroundColor: '#FFADAD'}}
                 type="button"
                 variant="contained"
                 size="small"
@@ -116,9 +112,7 @@ class CheckoutPath extends React.Component {
             <div>Checkout as guest and pay with credit card.</div>
             <br />
             <Button
-              style={{
-                backgroundColor: '#336699'
-              }}
+              style={{backgroundColor: '#FFADAD'}}
               type="button"
               variant="contained"
               size="small"

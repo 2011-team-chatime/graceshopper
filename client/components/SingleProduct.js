@@ -49,7 +49,7 @@ class SingleProduct extends React.Component {
                 <div className="buyButton">
                   <Button
                     style={{
-                      backgroundColor: '#336699'
+                      backgroundColor: '#FFADAD'
                     }}
                     variant="contained"
                     size="large"

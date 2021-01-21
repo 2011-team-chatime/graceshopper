@@ -35,7 +35,7 @@ export const UserHome = props => {
               variant="contained"
               size="large"
               style={{
-                backgroundColor: 'black',
+                backgroundColor: '#56c77d',
                 color: 'white',
                 margin: '10px',
                 width: '330px'
@@ -48,7 +48,7 @@ export const UserHome = props => {
               variant="contained"
               size="large"
               style={{
-                backgroundColor: 'black',
+                backgroundColor: '#56c77d',
                 color: 'white',
                 margin: '10px',
                 width: '330px'

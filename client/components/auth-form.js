@@ -36,7 +36,7 @@ const AuthForm = props => {
             variant="contained"
             color="primary"
             type="submit"
-            style={{margin: 10, width: '20%'}}
+            style={{margin: 10, width: '20%', backgroundColor: '#FFADAD'}}
           >
             {displayName}
           </Button>
