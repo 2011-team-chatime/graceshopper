@@ -14,6 +14,7 @@ import NewCustomerCheckout from './components/NewCustomerCheckout'
 import CheckoutPath from './components/CheckoutPath'
 import AddProduct from './components/AddProduct'
 import EditProduct from './components/EditProduct'
+import Home from './components/HomePage'
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
 
     return (
       <Switch>
+        <Route exact path="/" component={Home} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
