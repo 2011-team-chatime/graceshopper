@@ -71,6 +71,7 @@ label {
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   /* background: linear-gradient(45deg, #336699, #f4f3ee); */
   background-color: #336699;
   position: fixed;
@@ -78,7 +79,13 @@ label {
   width: 100%;
   left: 0px;
   z-index: 1;
+  /* border: 2px solid green; */
 }
+
+/* .navChild { */
+/* display: flex; */
+/* justify-content: center; */
+/* } */
 
 .navbar a {
   color: #f4f3ee;
@@ -87,9 +94,9 @@ label {
   text-decoration: none;
 }
 
-.navbar a:hover {
+/* .navbar a:hover {
   color: black;
-}
+} */
 
 .titleNav {
   margin-right: 150px;
@@ -98,8 +105,9 @@ label {
 
 .navcomponent {
   text-align: right;
-  margin-left: 1100px;
-  width: 600px;
+  /* border: 2px solid black; */
+  /* margin-left: 600px; */
+  /* width: 600px; */
 }
 
 /* nav a {
@@ -223,12 +231,19 @@ form div {
 
 .itemsInCart {
   padding: 1px;
-  position: absolute;
-  right: 170px;
+  /* position: absolute; */
+  right: 20%;
   margin-top: -60px;
   font-size: 20px;
+  /* border: 2px solid red; */
+  position: fixed;
+  /* margin-top: 1px; */
 }
 
+.icon {
+  display: flex;
+  flex-direction: column;
+}
 .checkoutPathContainer {
   display: flex;
   padding: 2em;

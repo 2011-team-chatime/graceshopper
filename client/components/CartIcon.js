@@ -12,12 +12,16 @@ class CartIcon extends React.Component {
   render() {
     const {products} = this.props.cart
     return (
-      <Link to="/cart">
-        <ShoppingCartIcon fontSize="large" />
-        <div className="itemsInCart">
-          <div>{products ? products.length : 0}</div>
-        </div>
-      </Link>
+      <div className="icon">
+        <Link to="/cart" className="itemsInCart">
+          <ShoppingCartIcon fontSize="large" />
+          <div>
+            {/* <div> */}
+            {products ? products.length : 0}
+            {/* </div> */}
+          </div>
+        </Link>
+      </div>
     )
   }
 }
