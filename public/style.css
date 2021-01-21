@@ -69,7 +69,7 @@ label {
 }
 
 .navbar {
-display: flex;
+  display: flex;
   align-items: center;
   /* background: linear-gradient(45deg, #336699, #f4f3ee); */
   background-color: #336699;
@@ -266,6 +266,9 @@ form div {
 
 #quantity-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin: 40px; */
 }
 
 .cart-container {
@@ -283,7 +286,7 @@ form div {
   align-items: center;
   justify-content: space-between;
   margin: 20px;
-  width: 500px;
+  width: 700px;
   border-bottom: 1px solid #5c677d;
 }
 

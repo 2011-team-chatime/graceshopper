@@ -82,7 +82,10 @@ class Cart extends React.Component {
                     >
                       -
                     </button>
-                    <span> Quantity: {product.item.cartQuantity} </span>
+                    <span style={{padding: '10px'}}>
+                      {' '}
+                      Quantity: {product.item.cartQuantity}{' '}
+                    </span>
                     <button
                       type="button"
                       onClick={event => {
@@ -92,12 +95,14 @@ class Cart extends React.Component {
                     >
                       +
                     </button>
+
+                    <DeleteIcon
+                      style={{cursor: 'pointer'}}
+                      onClick={() => {
+                        this.handleDelete(product)
+                      }}
+                    />
                   </div>
-                  <DeleteIcon
-                    onClick={() => {
-                      this.handleDelete(product)
-                    }}
-                  />
                 </div>
               </div>
             ))}
@@ -108,10 +113,12 @@ class Cart extends React.Component {
                 size="small"
                 color="primary"
                 className="button"
+                style={{marginBottom: '15px'}}
               >
                 Checkout
               </Button>
             </Link>
+            <br />
 
             {userCart.total > 0 && (
               <div>Cart Total: ${(userCart.total / 100).toFixed(2)}</div>
