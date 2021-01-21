@@ -34,7 +34,7 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1457364208l/29437996._SX318_.jpg'
+      'https://img.glyphs.co/img?src=aHR0cHM6Ly9zMy5tZWRpYWxvb3QuY29tL3Jlc291cmNlcy9QYXBlcmJhY2stQm9vay1Nb2NrdXAtUHJldmlldy0xLmpwZw&q=90&enlarge=true&h=1036&w=1600'
   },
   genre: {
     type: Sequelize.ENUM(
