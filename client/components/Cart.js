@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 import {fetchCart, deleteItem, addToCart, subOne} from '../store/cart'
 import {Link} from 'react-router-dom'
 import sortBy from 'lodash.sortby'
@@ -61,36 +62,27 @@ class Cart extends React.Component {
               <div key={product.id} className="cartItemContainer">
                 <div>
                   <Link to={`/products/${product.id}`}>
-                    <img src={product.imageUrl} className="book-img" />
+                    <img src={product.imageUrl} className="cart-book-img" />
                   </Link>
-
-                  <p>Price: ${(product.price / 100).toFixed(2)}</p>
                   <p>
-                    Item Subtotal:$
-                    {(product.price * product.item.cartQuantity / 100).toFixed(
-                      2
-                    )}
+                    {product.title} | by {product.author}
                   </p>
+                  <p>Price: ${(product.price / 100).toFixed(2)}</p>
                 </div>
-
-                <p>
-                  {product.title} | by {product.author}
-                </p>
 
                 <div>
                   <div id="quantity-container">
-                    {product.item.cartQuantity > 1 && (
-                      <button
-                        type="button"
-                        onClick={event => {
-                          event.preventDefault()
-                          this.handleSub(product)
-                        }}
-                      >
-                        -
-                      </button>
-                    )}
-                    Quantity: {product.item.cartQuantity}
+                    <button
+                      type="button"
+                      disabled={product.item.cartQuantity < 2}
+                      onClick={event => {
+                        event.preventDefault()
+                        this.handleSub(product)
+                      }}
+                    >
+                      -
+                    </button>
+                    <span> Quantity: {product.item.cartQuantity} </span>
                     <button
                       type="button"
                       onClick={event => {
@@ -101,18 +93,11 @@ class Cart extends React.Component {
                       +
                     </button>
                   </div>
-                  <Button
+                  <DeleteIcon
                     onClick={() => {
                       this.handleDelete(product)
                     }}
-                    type="button"
-                    variant="contained"
-                    size="small"
-                    color="primary"
-                    className="button"
-                  >
-                    Delete Item
-                  </Button>
+                  />
                 </div>
               </div>
             ))}
@@ -124,7 +109,7 @@ class Cart extends React.Component {
                 color="primary"
                 className="button"
               >
-                Go to Checkout
+                Checkout
               </Button>
             </Link>
 

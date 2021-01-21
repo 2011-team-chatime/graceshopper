@@ -169,7 +169,7 @@ const users = [
 
 const products = [
   {
-    title: 'erat tortor sollicitudin',
+    title: 'erat tortor',
     author: 'Anastassia Dallaghan',
     price: 860,
     quantity: 14,
@@ -178,7 +178,7 @@ const products = [
       'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.'
   },
   {
-    title: 'quis turpis eget elit sodales',
+    title: 'quis turpis',
     author: 'Ricky Derx',
     price: 2402,
     quantity: 1,
@@ -196,7 +196,7 @@ const products = [
       'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
   },
   {
-    title: 'nulla tellus in sagittis dui vel',
+    title: 'nulla tellus',
     author: 'Fanya Somerlie',
     price: 2861,
     quantity: 13,
@@ -205,7 +205,7 @@ const products = [
       'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
   },
   {
-    title: 'odio porttitor id consequat in consequat ut nulla sed accumsan',
+    title: 'odio porttitor',
     author: 'Kirsti Gruczka',
     price: 2238,
     quantity: 71,
@@ -214,8 +214,7 @@ const products = [
       'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.'
   },
   {
-    title:
-      'interdum mauris non ligula pellentesque ultrices phasellus id sapien in',
+    title: 'interdum mauris',
     author: 'Moises Silverstone',
     price: 2594,
     quantity: 83,
@@ -224,7 +223,7 @@ const products = [
       'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.'
   },
   {
-    title: 'faucibus cursus urna ut tellus nulla',
+    title: 'faucibus cursus',
     author: 'Jaimie Pocklington',
     price: 842,
     quantity: 37,
@@ -233,7 +232,7 @@ const products = [
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.'
   },
   {
-    title: 'duis faucibus accumsan odio curabitur convallis duis consequat dui',
+    title: 'duis faucibus',
     author: 'Kathye Peattie',
     price: 1699,
     quantity: 77,
@@ -242,7 +241,7 @@ const products = [
       'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.'
   },
   {
-    title: 'ligula nec sem duis aliquam convallis nunc proin at',
+    title: 'ligula nec',
     author: 'Ryan Woollard',
     price: 1214,
     quantity: 44,
@@ -260,8 +259,7 @@ const products = [
       'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.'
   },
   {
-    title:
-      'ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit',
+    title: 'ultrices enim lorem',
     author: 'Tudor Redon',
     price: 1477,
     quantity: 3,
@@ -270,7 +268,7 @@ const products = [
       'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
   },
   {
-    title: 'interdum mauris non ligula pellentesque',
+    title: 'interdum',
     author: 'Darius Sturridge',
     price: 1189,
     quantity: 82,
@@ -279,7 +277,7 @@ const products = [
       'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
   },
   {
-    title: 'fusce lacus purus aliquet at feugiat non pretium',
+    title: 'fusce lacus purus',
     author: 'Dulci Batterson',
     price: 2203,
     quantity: 4,
@@ -288,8 +286,7 @@ const products = [
       'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.'
   },
   {
-    title:
-      'sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at',
+    title: 'sapien iaculis congue',
     author: 'Cynthia Broinlich',
     price: 2821,
     quantity: 70,
@@ -325,7 +322,7 @@ const products = [
       'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.'
   },
   {
-    title: 'vivamus in felis eu sapien cursus vestibulum',
+    title: 'vivamus in felis eu',
     author: 'Brett Osichev',
     price: 2406,
     quantity: 45,
@@ -343,7 +340,7 @@ const products = [
       'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.'
   },
   {
-    title: 'platea dictumst aliquam augue quam sollicitudin',
+    title: 'platea dictumst aliquam',
     author: 'Nicolis Van Arsdalen',
     price: 960,
     quantity: 55,

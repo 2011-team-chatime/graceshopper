@@ -1,6 +1,9 @@
 body {
-  font-family: sans-serif;
+  margin-top: 50px;
+  font-family: Comfortaa;
   font-size: 16px;
+  padding: 16px;
+  padding-top: 50px;
 }
 
 a {
@@ -11,10 +14,56 @@ label {
   display: block;
 }
 
-nav a {
+.homeImg {
+  display: flex;
+  justify-content: center;
+}
+
+.homeImg > img {
+  width: 75%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(45deg, #336699, #f4f3ee);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  z-index: 1;
+}
+
+.navbar a {
+  color: #f2f2f2;
+  text-align: right;
+  padding: 3px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: black;
+}
+
+.titleNav {
+  margin-right: 150px;
+  margin-left: 50px;
+}
+
+.navcomponent {
+  flex-wrap: nowrap;
+  text-align: right;
+  align-self: center;
+  justify-self: flex-end;
+  float: right;
+  margin-left: 50px;
+}
+
+/* nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 form div {
   margin: 1em;
@@ -128,23 +177,18 @@ form div {
   margin-top: 30px;
 }
 
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .wrapperForCart {
   width: 20px;
 }
+
 .itemsInCart {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
-  width: 26px;
-  height: 26px;
-  padding: 1px;
+  border-radius: 12px; */
+  width: 25px;
+  height: 25px;
+  /* padding: 1px; */
   position: absolute;
   right: 10px;
   margin-top: -60px;
@@ -197,8 +241,13 @@ form div {
 
 .cartItemContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   margin: 20px;
-  width: 380px;
+  width: 500px;
+  border-bottom: 1px solid #5c677d;
+}
+
+.cart-book-img {
+  height: 100px;
 }
