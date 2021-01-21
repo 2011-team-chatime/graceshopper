@@ -182,13 +182,13 @@ form div {
 }
 
 .itemsInCart {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
-  width: 26px;
-  height: 26px;
-  padding: 1px;
+  border-radius: 12px; */
+  width: 25px;
+  height: 25px;
+  /* padding: 1px; */
   position: absolute;
   right: 10px;
   margin-top: -60px;
