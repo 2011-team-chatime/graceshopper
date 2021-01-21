@@ -24,7 +24,7 @@ class Confirmation extends React.Component {
     const user = this.props.user
 
     return (
-      <div>
+      <div className="confirmation">
         <h3>Order Placed!</h3>
         <div>Thank you for your order{user.id && `, ${user.name}`}!</div>
         <div>

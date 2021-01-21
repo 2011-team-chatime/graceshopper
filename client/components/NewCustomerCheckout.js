@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button} from '@material-ui/core'
+import {Button, TextField} from '@material-ui/core'
 import {createGuest} from '../store/user'
 import {addGuestCart} from '../store/cart'
 
@@ -42,41 +42,46 @@ class NewCustomerCheckout extends React.Component {
         <div>Enter your billing and shipping information.</div>
 
         <form>
-          <div>
-            <label htmlFor="name">Name: </label>
-            <input
+          <div className="NewCustomerForm">
+            <TextField
+              label="Name"
+              variant="outlined"
               name="name"
               type="text"
               placeholder="required"
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <label htmlFor="address">Address: </label>
-            <input
+            <TextField
+              label="Address"
+              variant="outlined"
               name="address"
               type="text"
               placeholder="required"
               value={this.state.address}
               onChange={this.handleChange}
             />
-            <label htmlFor="email">Email: </label>
-            <input
+            <TextField
+              label="Email"
+              variant="outlined"
               name="email"
               type="text"
               placeholder="required"
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <label htmlFor="password">Password: </label>
-            <input
+            <TextField
+              label="Password"
+              variant="outlined"
               name="password"
               type="password"
               placeholder="required"
               value={this.state.password}
               onChange={this.handleChange}
             />
-            <label htmlFor="paymentinfo">Credit Card: </label>
-            <input
+            <TextField
+              label="Credit Card"
+              variant="outlined"
               name="paymentinfo"
               type="text"
               placeholder="required"
@@ -87,6 +92,9 @@ class NewCustomerCheckout extends React.Component {
 
           <br />
           <Button
+            style={{
+              backgroundColor: '#336699'
+            }}
             type="button"
             variant="contained"
             size="small"

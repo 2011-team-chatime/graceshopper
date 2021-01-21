@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button} from '@material-ui/core'
+import {Button, TextField} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import {fetchCart, placeOrder, addGuestCart} from '../store/cart'
 import {guestauth} from '../store/user'
@@ -50,26 +50,33 @@ class CheckoutPath extends React.Component {
           <h3>Returning Customer</h3>
           <h4>Login</h4>
           <form>
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input
+            <div className="returningCustomerForm">
+              {/* <label htmlFor="email">Email: </label> */}
+              <TextField
+                label="Email"
                 name="email"
                 type="text"
-                placeholder="required"
+                // placeholder="required"
+                variant="outlined"
                 value={this.state.email}
                 onChange={this.handleChange}
               />
-              <label htmlFor="password">Password: </label>
-              <input
+              {/* <label htmlFor="password">Password: </label> */}
+              <TextField
+                label="Password"
                 name="password"
                 type="password"
-                placeholder="required"
+                // placeholder="required"
+                variant="outlined"
                 value={this.state.password}
                 onChange={this.handleChange}
               />
             </div>
             <br />
             <Button
+              style={{
+                backgroundColor: '#336699'
+              }}
               type="button"
               variant="contained"
               size="small"
@@ -91,6 +98,9 @@ class CheckoutPath extends React.Component {
             <br />
             <Link to="/newcustomer">
               <Button
+                style={{
+                  backgroundColor: '#336699'
+                }}
                 type="button"
                 variant="contained"
                 size="small"
@@ -106,6 +116,9 @@ class CheckoutPath extends React.Component {
             <div>Checkout as guest and pay with credit card.</div>
             <br />
             <Button
+              style={{
+                backgroundColor: '#336699'
+              }}
               type="button"
               variant="contained"
               size="small"
