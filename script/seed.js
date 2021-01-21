@@ -381,19 +381,23 @@ const orders = [
   },
   {
     status: 'inCart',
-    userId: 7
+    userId: 7,
+    total: 233
   },
   {
     status: 'inCart',
-    userId: 8
+    userId: 8,
+    total: 4644
   },
   {
     status: 'inCart',
-    userId: 9
+    userId: 9,
+    total: 5730
   },
   {
     status: 'inCart',
-    userId: 10
+    userId: 10,
+    total: 2729
   },
   {
     status: 'inCart',
@@ -466,7 +470,21 @@ async function seed() {
       order11
     ] = allOrders
 
-    await order11.setProducts([product1, product2, product3])
+    await order11.addProducts([product1, product2, product3])
+
+    await order10.addProducts([product3, product5])
+
+    await order9.setProducts([
+      product17,
+      product12,
+      product10,
+      product11,
+      product8
+    ])
+
+    await order8.setProducts([product5, product18])
+
+    await order7.setProducts([product17])
 
     console.log(`seeded ${products.length} products`)
     console.log(`seeded ${users.length} users`)
