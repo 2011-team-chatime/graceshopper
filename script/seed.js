@@ -205,7 +205,8 @@ const products = [
       'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
   },
   {
-    title: 'odio porttitor id',
+
+    title: 'odio porttitor',
     author: 'Kirsti Gruczka',
     price: 2238,
     quantity: 71,
@@ -232,7 +233,8 @@ const products = [
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.'
   },
   {
-    title: 'duis faucibus accumsan',
+
+    title: 'duis faucibus',
     author: 'Kathye Peattie',
     price: 1699,
     quantity: 77,
@@ -241,7 +243,8 @@ const products = [
       'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.'
   },
   {
-    title: 'ligula nec sem duis',
+
+    title: 'ligula nec',
     author: 'Ryan Woollard',
     price: 1214,
     quantity: 44,
@@ -268,7 +271,8 @@ const products = [
       'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.'
   },
   {
-    title: 'interdum mauris non',
+
+    title: 'interdum',
     author: 'Darius Sturridge',
     price: 1189,
     quantity: 82,
