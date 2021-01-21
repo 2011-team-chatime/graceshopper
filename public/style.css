@@ -6,6 +6,51 @@ body {
   padding-top: 50px;
 }
 
+.loginForm {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginForm div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homeProfile {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profileContainer span {
+  border-bottom: 0.5px dotted #336699;
+  background-color: #d9d9d9;
+}
+
+.profileContainer div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homestyle {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  font-size: larger;
+  z-index: 999;
+  position: absolute;
+}
+
 a {
   text-decoration: none;
 }
@@ -27,7 +72,7 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(45deg, #336699, #f4f3ee);
+  background: linear-gradient(45deg, #336699, #d9d9d9);
   position: fixed;
   top: 0px;
   width: 100%;

@@ -13,12 +13,18 @@ export const UserHome = props => {
     'x'.repeat(creditCard.length - 4) + creditCard.slice(creditCard.length - 4)
 
   return (
-    <div>
-      <div>
+    <div className="homeProfile">
+      <div className="profileContainer">
         <h3>Welcome, {name}!</h3>
-        <div>Email: {email}</div>
-        <div>Address: {address}</div>
-        <div>Credit Card: {lastFourDigitsCC}</div>
+        <div>
+          Email: <span>{email}</span>
+        </div>
+        <div>
+          Address: <span>{address}</span>
+        </div>
+        <div>
+          Credit Card: <span>{lastFourDigitsCC}</span>
+        </div>
       </div>
 
       <div>
