@@ -72,12 +72,14 @@ class AllProducts extends React.Component {
               })
               .map(product => (
                 <div key={product.id} className="productContainer">
-                  <Link to={`/products/${product.id}`} className="bookImg">
-                    <img src={product.imageUrl} />
+                  <Link to={`/products/${product.id}`}>
+                    <img className="bookImg" src={product.imageUrl} />
                   </Link>
                   <div className="details">
                     <p className="title">{product.title.toUpperCase()}</p>
-                    <p className="price">${(product.price / 100).toFixed(2)}</p>
+                    <p style={{color: '#5C677D'}} className="price">
+                      ${(product.price / 100).toFixed(2)}
+                    </p>
                   </div>
 
                   {this.props.admin && (

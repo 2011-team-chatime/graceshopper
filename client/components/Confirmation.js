@@ -37,6 +37,10 @@ class Confirmation extends React.Component {
         </div>
         <br />
         <div>Happy reading!</div>
+        <img
+          id="book-confirm"
+          src="https://i.etsystatic.com/5141572/r/il/98dc41/1342852484/il_794xN.1342852484_fbyh.jpg"
+        />
       </div>
     )
   }
