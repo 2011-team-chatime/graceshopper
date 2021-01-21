@@ -69,10 +69,10 @@ label {
 }
 
 .navbar {
-  display: flex;
+display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(45deg, #336699, #d9d9d9);
+  /* background: linear-gradient(45deg, #336699, #f4f3ee); */
+  background-color: #336699;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -81,9 +81,9 @@ label {
 }
 
 .navbar a {
-  color: #f2f2f2;
+  color: #f4f3ee;
   text-align: right;
-  padding: 3px;
+  padding: 10px;
   text-decoration: none;
 }
 
@@ -97,12 +97,9 @@ label {
 }
 
 .navcomponent {
-  flex-wrap: nowrap;
   text-align: right;
-  align-self: center;
-  justify-self: flex-end;
-  float: right;
-  margin-left: 50px;
+  margin-left: 1100px;
+  width: 600px;
 }
 
 /* nav a {
@@ -225,15 +222,9 @@ form div {
 }
 
 .itemsInCart {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px; */
-  width: 25px;
-  height: 25px;
-  /* padding: 1px; */
+  padding: 1px;
   position: absolute;
-  right: 10px;
+  right: 170px;
   margin-top: -60px;
   font-size: 20px;
 }
@@ -253,8 +244,8 @@ form div {
   border-radius: 10px;
 }
 
-.newCustomerContainer {
-}
+/* .newCustomerContainer {
+} */
 
 .adminButton {
   background-color: black;
@@ -271,7 +262,6 @@ form div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 2px solid red; */
 }
 
 #quantity-container {
